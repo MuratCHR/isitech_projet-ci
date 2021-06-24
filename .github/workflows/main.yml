@@ -2,16 +2,14 @@ name: GitHub Actions Demo
 on: [push]
 jobs:
   Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
+    runs-on: proactivehk/grails:2.5.6
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - cd ./dgd
+      - export APP_NAME=`cat application.properties | grep app.name | cut -f 2 -d =`
+      - export APP_VERSION=`cat application.properties | grep app.version | cut -f 2 -d =`
+      - echo "Building application $APP_NAME version $APP_VERSION"
+      - grails test war
+      - cd ./target
+      - curl -v -u $tomcat_user:$tomcat_password --insecure "https://xxxxxxxxx/manager/text/undeploy?path=/$APP_NAME"
+      - curl -v -u $tomcat_user:$tomcat_password --insecure -T $APP_NAME-$APP_VERSION.war "https://xxxxxxx/manager/text/deploy?path=/$APP_NAME&update=true"
+
