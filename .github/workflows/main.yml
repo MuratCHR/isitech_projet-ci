@@ -1,15 +1,54 @@
-name: GitHub Actions Demo
-on: [push]
-jobs:
-  Explore-GitHub-Actions:
-    runs-on: proactivehk/grails:2.5.6
-    steps:
-      - cd ./dgd
-      - export APP_NAME=`cat application.properties | grep app.name | cut -f 2 -d =`
-      - export APP_VERSION=`cat application.properties | grep app.version | cut -f 2 -d =`
-      - echo "Building application $APP_NAME version $APP_VERSION"
-      - grails test war
-      - cd ./target
-      - curl -v -u $tomcat_user:$tomcat_password --insecure "https://xxxxxxxxx/manager/text/undeploy?path=/$APP_NAME"
-      - curl -v -u $tomcat_user:$tomcat_password --insecure -T $APP_NAME-$APP_VERSION.war "https://xxxxxxx/manager/text/deploy?path=/$APP_NAME&update=true"
+  
+# This workflow will build a Java project with Gradle
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
+name: Java CI with Grails
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        java: [11]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Java ${{ matrix.java }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java }}
+      - name: Build with Gradle
+        run: ./gradlew build
+
+  deploy-to-tomcat:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        java: [8, 11, 14]
+        tomcat: [9.0.37, 8.5.57]
+    env: 
+      TOMCAT_VERSION: 4.0.7
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Java ${{ matrix.java }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java }}
+      - name: Build with Gradle
+        run: grails dev war
+      - name: Deploy to Tomcat
+        run: cp build/libs/joinfaces-gradle-war-example.war apache-tomcat-${{ matrix.tomcat }}/webapps/
+      - name: Verify Deployment
+        run: |
+          timeout --preserve-status 60s tail -f apache-tomcat-${{ matrix.tomcat }}/logs/catalina.out || true
+          wget localhost:8080/joinfaces-gradle-war-example/index.xhtml
+          grep "Hello from Spring" index.xhtml
