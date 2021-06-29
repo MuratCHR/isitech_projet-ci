@@ -14,5 +14,5 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
       - name: WAR file + curl to Tomcat
-        run: cd projet && chmod +x ./gradlew && ./gradlew assemble && cd build/libs && ls
+        run: cd projet && chmod +x ./gradlew && ./gradlew assemble && cd build/libs && ls && curl -v -u admin:d2mprojet --insecure "https://172.16.100.68:8080/manager/text/undeploy?path=/isitech-0.1" && curl -u admin:d2mprojet -T  isitech-0.1.war "http://172.16.100.68:8080/manager/text/deploy?path=/isitech-0.1&update=true"
         
