@@ -23,7 +23,7 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
       - name: Build with Gradle
-        run: ./gradlew build
+        run: grails dev war
 
   deploy-to-tomcat:
 
