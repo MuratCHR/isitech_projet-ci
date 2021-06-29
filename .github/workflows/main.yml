@@ -7,35 +7,16 @@ name: Java CI with Grails
 on: [push, pull_request]
 
 jobs:
-  build:
-
-    runs-on: grails-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        java: [11]
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Java ${{ matrix.java }}
-        uses: actions/setup-java@v1
-        with:
-          java-version: ${{ matrix.java }}
-      - name: Build with Gradle
-        run: grails dev war
-
   deploy-to-tomcat:
 
-    runs-on: ubuntu-latest
+    runs-on: grails
 
     strategy:
       fail-fast: false
       matrix:
-        java: [8, 11, 14]
         tomcat: [9.0.37, 8.5.57]
     env: 
-      TOMCAT_VERSION: 4.0.7
+      TOMCAT_VERSION: 9.0.37
 
     steps:
       - uses: actions/checkout@v2
@@ -44,7 +25,7 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
       - name: Build with Gradle
-        run: grails dev war
+        run: dev war
       - name: Deploy to Tomcat
         run: cp build/libs/joinfaces-gradle-war-example.war apache-tomcat-${{ matrix.tomcat }}/webapps/
       - name: Verify Deployment
