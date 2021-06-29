@@ -18,6 +18,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
       - name: Go to project
         run: cd projet && ./gradlew assemble
         
