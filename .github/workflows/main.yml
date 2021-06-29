@@ -18,5 +18,5 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
       - name: Go to project
-        run: cd projet && chmod +x ./gradlew && ./gradlew assemble
+        run: cd projet && chmod +x ./gradlew && ./gradlew assemble && cd build/libs && ls
         
