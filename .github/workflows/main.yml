@@ -1,12 +1,8 @@
-name: Java CI with Gradle
-
+name: Generate WAR file and push it on Tomcat Server
 on: [push, pull_request]
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       fail-fast: false
       matrix:
@@ -17,6 +13,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
-      - name: Go to project
+      - name: WAR file + curl to Tomcat
         run: cd projet && chmod +x ./gradlew && ./gradlew assemble && cd build/libs && ls
         
