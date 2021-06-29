@@ -18,5 +18,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
+      - name: Go to project
+        run: cd projet
       - name: Build with Gradle
         run: ./gradlew assemble
+        
