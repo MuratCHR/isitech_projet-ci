@@ -1,22 +1,16 @@
-  
-# This workflow will build a Java project with Gradle
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
-
-name: Java CI with Grails
+name: Java CI with Gradle
 
 on: [push, pull_request]
 
 jobs:
-  deploy-to-tomcat:
+  build:
 
-    runs-on: grails
+    runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        tomcat: [9.0.37, 8.5.57]
-    env: 
-      TOMCAT_VERSION: 9.0.37
+        java: [8, 11, 14]
 
     steps:
       - uses: actions/checkout@v2
@@ -25,11 +19,4 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
       - name: Build with Gradle
-        run: dev war
-      - name: Deploy to Tomcat
-        run: cp build/libs/joinfaces-gradle-war-example.war apache-tomcat-${{ matrix.tomcat }}/webapps/
-      - name: Verify Deployment
-        run: |
-          timeout --preserve-status 60s tail -f apache-tomcat-${{ matrix.tomcat }}/logs/catalina.out || true
-          wget localhost:8080/joinfaces-gradle-war-example/index.xhtml
-          grep "Hello from Spring" index.xhtml
+        run: ./gradlew assemble
