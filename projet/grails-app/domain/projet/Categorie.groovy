@@ -1,6 +1,6 @@
 package projet
 
-class Categorie {
+class Categorie  {
 
     def dataSource
     int id

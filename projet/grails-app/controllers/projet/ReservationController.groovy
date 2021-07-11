@@ -15,6 +15,11 @@ class ReservationController {
         [reservationList: reservationList]
     }
 
+    def anotherPage() {
+        def reservationList = Reservation.list()
+        [reservationList: reservationList]
+    }
+
     @Transactional
     def create() {
         def reservation = new Reservation(params).save()

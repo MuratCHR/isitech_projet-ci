@@ -16,29 +16,52 @@
         height:400px;
     }
     </style>
+
+    %{--    <asset:stylesheet src="application.css"/>--}%
+    s
+
+    <!-- Stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <!-- Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+
 </head>
 
 <%--
 MENU NAVBAR
 --%>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="../">Accueil<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#magasin/index">Liste des magasins</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../reservation/index">Réservation</a>
-            </li>
-        </ul>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand"><b>D2M</b></a>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarCollapse" style="">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="../">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="../reservation/index">Réservation</a>
+                </li>
+                %{--                <li class="nav-item">--}%
+                %{--                    <a class="nav-link" href="#">Link</a>--}%
+                %{--                </li>--}%
+                %{--                <li class="nav-item">--}%
+                %{--                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>--}%
+                %{--                </li>--}%
+            </ul>
+            <form class="d-flex">
+                <button class="btn btn-danger" type="submit">Espace Pro</button>
+            </form>
+        </div>
     </div>
 </nav>
 
 <body>
+<div class="container" style="padding-top: 80px;"> </div>
 <br><br>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
 </script>
@@ -49,7 +72,7 @@ MENU NAVBAR
     function chercher(adresseVille, nomMagasin){
         if(adresseVille != ""){
             $.ajax({
-                url: "https://nominatim.openstreetmap.org/search", // URL de Nominatim
+                url: "c", // URL de Nominatim
                 type: 'get', // Requête de type GET
                 data: "q="+adresseVille+"&format=json&addressdetails=1&limit=1&polygon_svg=1" // Données envoyées (q -> adresse complète, format -> format attendu pour la réponse, limit -> nombre de réponses attendu, polygon_svg -> fournit les données de polygone de la réponse en svg)
             }).done(function (response) {
@@ -64,30 +87,33 @@ MENU NAVBAR
                     console.log(listLatitudeLongitudeVilles);
                 }
             }).fail(function (error) {
-                alert(error);
+                //alert(error);
             });
         }
     }
 </script>
 <div class="card-columns">
-    <g:each in="${magasinList}" status="j" var="Magasininstance">
+    <g:each in="${magasinList}" status="j" var="magasinInstance">
         <div class="card mb-4">
                 <img class="card-img-top" width="200" height="200" src="http://kdimageslogo.com/221-large_default/-logo-carrefour.jpg" alt="Enseigne magasin">
                 <div class="card-body">
-                    <h4 class="card-title">${fieldValue(bean: Magasininstance, field: "nom") }</h4>
-                    <p class="card-text">${fieldValue(bean: Magasininstance, field: "adresse") }</p>
-                    <p class="card-text">${magasinList.idVille ? fieldValue(bean: Magasininstance.ville, field: "nomVille") : ""}</p>
-                    <p class="card-text">${magasinList.idVille ? fieldValue(bean: Magasininstance.ville, field: "codePostal") : ""}</p>
-                    <p class="card-text">${magasinList.idCategorie ? fieldValue(bean: Magasininstance.categorie, field: "typeCategorie") : ""}</p>
-                    <p class="card-text">${j}</p>
+                    <h4 class="card-title">${fieldValue(bean: magasinInstance, field: "nom") }</h4>
+                    <p class="card-text">${fieldValue(bean: magasinInstance, field: "adresse") }</p>
+                    <p class="card-text">${magasinList.idVille ? fieldValue(bean: magasinInstance.ville, field: "nomVille") : ""}</p>
+                    <p class="card-text">${magasinList.idVille ? fieldValue(bean: magasinInstance.ville, field: "codePostal") : ""}</p>
+                    <p class="card-text">${magasinList.idCategorie ? fieldValue(bean: magasinInstance.categorie, field: "typeCategorie") : ""}</p>
+                    <p class="card-text">${magasinInstance.id}</p>
+                    <g:link action="show" id="${fieldValue(bean: magasinInstance, field: "id")}">
+                        ${message(code: 'default.button.edit.label', default: 'Visiter le magasin')}
+                    </g:link>
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">D2MPROJET</small>
                 </div>
             </div>
         <script type="text/javascript">
-            var ville = "${fieldValue(bean: Magasininstance, field: "adresse") } ${magasinList.idVille ? fieldValue(bean: Magasininstance.ville, field: "codePostal") : ""}";
-            var nomDuMagasin = "${fieldValue(bean: Magasininstance, field: "nom") }";
+            var ville = "${fieldValue(bean: magasinInstance, field: "adresse") } ${magasinList.idVille ? fieldValue(bean: magasinInstance.ville, field: "codePostal") : ""}";
+            var nomDuMagasin = "${fieldValue(bean: magasinInstance, field: "nom") }";
             chercher(ville, nomDuMagasin);
         </script>
     </g:each>
@@ -96,37 +122,37 @@ MENU NAVBAR
 
 <g:form controller="magasin" action="create">
     <fieldset class="form">
-        <div class="fieldcontation ${hasErrors(bean: MagasinInstance, field: 'nom', 'error')}">
+        <div class="fieldcontation ${hasErrors(bean: magasinInstance, field: 'nom', 'error')}">
             <label for="nom">
                 <g:message code="nom.label" default="nom du magasin" />
             </label>
-            <g:textField name="nom" value="${MagasinInstance?.nom}"/>
+            <g:textField name="nom" value="${magasinInstance?.nom}"/>
         </div>
-        <div class="fieldcontation ${hasErrors(bean: MagasinInstance, field: 'adresse', 'error')}">
+        <div class="fieldcontation ${hasErrors(bean: magasinInstance, field: 'adresse', 'error')}">
             <label for="adresse">
                 <g:message code="adresse.label" default="adresse" />
             </label>
-            <g:textField name="adresse" value="${MagasinInstance?.adresse}"/>
+            <g:textField name="adresse" value="${magasinInstance?.adresse}"/>
         </div>
-        <div class="fieldcontation ${hasErrors(bean: MagasinInstance, field: 'placeTotale', 'error')}">
+        <div class="fieldcontation ${hasErrors(bean: magasinInstance, field: 'placeTotale', 'error')}">
             <label for="placeTotale">
                 <g:message code="placeTotale.label" default="placeTotale" />
             </label>
-            <g:textField name="placeTotale" value="${MagasinInstance?.placeTotale}"/>
+            <g:textField name="placeTotale" value="${magasinInstance?.placeTotale}"/>
         </div>
 
-        <div class="fieldcontation ${hasErrors(bean: MagasinInstance, field: 'idVille', 'error')}">
+        <div class="fieldcontation ${hasErrors(bean: magasinInstance, field: 'idVille', 'error')}">
             <label for="idVille">
                 <g:message code="codePostal.label" default="codePostal et ville" />
             </label>
-            <g:select name="idVille" from="${projet.Ville.list(sort: 'nomVille')}" optionKey="id" value="${MagasinInstance? MagasinInstance.ville_id : ''}" noSelection="['':'Choisir un code postal']" class="mySelect" />
+            <g:select name="idVille" from="${projet.Ville.list(sort: 'nomVille')}" optionKey="id" value="${magasinInstance? magasinInstance.ville_id : ''}" noSelection="['':'Choisir un code postal']" class="mySelect" />
         </div>
 
-        <div class="fieldcontation ${hasErrors(bean: MagasinInstance, field: 'idCategorie', 'error')}">
+        <div class="fieldcontation ${hasErrors(bean: magasinInstance, field: 'idCategorie', 'error')}">
             <label for="idCategorie">
                 <g:message code="categorie.label" default="Categorie" />
             </label>
-            <g:select name="idCategorie" from="${projet.Categorie.list()}" optionKey="id" value="${MagasinInstance? MagasinInstance.categorie_id : ''}" noSelection="['':'Choisir une categorie']" class="mySelect" />
+            <g:select name="idCategorie" from="${projet.Categorie.list()}" optionKey="id" value="${magasinInstance? magasinInstance.categorie_id : ''}" noSelection="['':'Choisir une categorie']" class="mySelect" />
         </div>
     </fieldset>
     <fieldset class="buttons">

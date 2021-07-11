@@ -11,6 +11,7 @@ class Magasin {
     int idCategorie
     Ville ville
     Categorie categorie
+    def scaffold = true
 
     static mapping = {
         table 'magasin'

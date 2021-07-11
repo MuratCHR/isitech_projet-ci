@@ -1,16 +1,40 @@
 package projet
 
+import grails.converters.JSON
+import grails.converters.XML
 import grails.gorm.transactions.Transactional
 import groovy.sql.GroovyResultSet
 import groovy.sql.Sql
+import projet.Magasin
 
 class MagasinController {
     static scaffolding = Magasin
+    static allowedMethods = [update: "PUT", save: "POST"]
+    static responseFormats = ['html', 'xml', 'json']
 
     def index() {
         def magasinList = Magasin.list()
         [magasinList: magasinList]
     }
+
+    def main() {
+        def magasinList = Magasin.list()
+        [magasinList: magasinList]
+    }
+
+    def detailMagasin() {
+        def magasinList = Magasin.list()
+        [magasinList: magasinList]
+    }
+
+    def edit() {
+        [magasinInstance: Magasin.get(params.id), magasinList: magasinList]
+    }
+
+    def show() {
+        [magasinInstance: Magasin.get(params.id)]
+    }
+
 
     @Transactional
     def create() {
@@ -34,6 +58,8 @@ class MagasinController {
         }
     }
 
+
+
     private List<GroovyResultSet> getMagasinsInFrance(String nomDuMagasin) {
         def sql = new Sql(dataSource)
         def entries = sql.rows("""
@@ -42,5 +68,15 @@ SELECT DISTINCT * FROM magasin, ville WHERE nom LIKE :nomMagasin AND ville_id = 
         def data = currentSession.createSQLQuery(entries)
         final result = data.list()
         return result
+    }
+
+    protected void notFound(String messageCode = null) {
+        messageCode = messageCode ?: 'default.not.found.message'
+        withFormat {
+            html {
+                flash.message = message(code: messageCode, args: [message(default: 'Magasin'), params.id])
+                redirect action: "index", method: "GET"
+            }
+        }
     }
 }
