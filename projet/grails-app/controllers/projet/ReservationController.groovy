@@ -15,7 +15,7 @@ class ReservationController {
         [reservationList: reservationList]
     }
 
-    def anotherPage() {
+    def listeResa() {
         def reservationList = Reservation.list()
         [reservationList: reservationList]
     }

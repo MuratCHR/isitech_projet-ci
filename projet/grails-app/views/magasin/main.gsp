@@ -60,7 +60,8 @@ MENU NAVBAR
 <body>
 <div class="container" style="padding-top: 140px;">
     <div class="input-group">
-        <input class="form-control" type="text" aria-label="default input example" style="text-align: center; font-size: 20px" placeholder="Rechercher un magasin par son nom ou code postal">
+        <input class="form-control nomMagasin" type="text" aria-label="default input example" style="text-align: left; font-size: 15px" placeholder="Nom du magasin">
+        <input class="form-control codePostal" type="text" aria-label="default input example" style="text-align: left; font-size: 15px" placeholder="Code postal">
         <button class="btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
     </div>
 

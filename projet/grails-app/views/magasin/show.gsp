@@ -75,7 +75,9 @@ MENU NAVBAR
                         <h5 class="card-title">${magasinInstance?.nom}</h5>
                         <p class="card-text">Jauge totale du magasin : ${magasinInstance?.placeTotale} places</p>
                         <p class="card-text">${fieldValue(bean: magasinInstance, field: "adresse") }, ${fieldValue(bean: magasinInstance.ville, field: "codePostal")}, ${fieldValue(bean: magasinInstance.ville, field: "nomVille")}</p>
-                        <a href="#" class="btn btn-primary">Je découvre les crénaux disponibles</a>
+                        <g:link  class="btn btn-primary" action="listeResa" id="${fieldValue(bean: magasinInstance, field: "id")}">
+                            ${message(code: 'Je découvre les créneaux disponibles', default: 'Je découvre les créneaux disponibles')}
+                        </g:link>
                     </div>
                 </div>
             </div>
@@ -148,3 +150,7 @@ footer {
 </style>
 </html>
 
+<!--
+SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = 1) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = 1 AND reservation.heureDebut = '12:00:01' AND reservation.dateReservation = '2021-08-10') as placeRestantes
+
+-->

@@ -35,6 +35,10 @@ class MagasinController {
         [magasinInstance: Magasin.get(params.id)]
     }
 
+    def listeResa() {
+        [magasinInstance: Magasin.get(params.id)]
+    }
+
 
     @Transactional
     def create() {
