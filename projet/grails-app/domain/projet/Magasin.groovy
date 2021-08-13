@@ -1,5 +1,9 @@
 package projet
+
+import groovy.sql.GroovyResultSet
 import groovy.sql.Sql
+
+import java.sql.Time
 
 class Magasin {
     def dataSource
@@ -9,6 +13,9 @@ class Magasin {
     int placeTotale
     int idVille
     int idCategorie
+    String horaireOuverture
+    String horaireFermeture
+    String ouvertLeMidi
     Ville ville
     Categorie categorie
     def scaffold = true
@@ -22,6 +29,9 @@ class Magasin {
         idVille column: 'identifiantVille'
         placeTotale column: 'placeTotale'
         idCategorie column: 'iddelacategorie'
+        horaireOuverture column: 'horaireOuverture'
+        horaireFermeture column: 'horaireFermeture'
+        ouvertLeMidi column: 'ouvertLeMidi'
 
 
     }
@@ -33,6 +43,9 @@ class Magasin {
         idVille(nullable: false)
         idCategorie(nullable:false)
         placeTotale(nullable: false)
+        horaireOuverture(nullable: true)
+        horaireFermeture(nullable: true)
+        ouvertLeMidi(nullable: true)
         ville(nullable:true)
         categorie(nullable:true)
     }
@@ -40,4 +53,7 @@ class Magasin {
     String toString() {
         return "$nom"
     }
+
+
+
 }

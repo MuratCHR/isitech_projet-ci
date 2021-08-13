@@ -141,6 +141,27 @@ MENU NAVBAR
             <g:textField name="placeTotale" value="${magasinInstance?.placeTotale}"/>
         </div>
 
+        <div class="fieldcontation ${hasErrors(bean: magasinInstance, field: 'horaireOuverture', 'error')}">
+            <label for="horaireOuverture">
+                <g:message code="horaireOuverture.label" default="horaireOuverture" />
+            </label>
+            <g:textField name="horaireOuverture" value="${magasinInstance?.horaireOuverture}"/>
+        </div>
+
+        <div class="fieldcontation ${hasErrors(bean: magasinInstance, field: 'horaireFermeture', 'error')}">
+            <label for="horaireFermeture">
+                <g:message code="horaireFermeture.label" default="horaireFermeture" />
+            </label>
+            <g:textField name="horaireFermeture" value="${magasinInstance?.horaireFermeture}"/>
+        </div>
+
+        <div class="fieldcontation ${hasErrors(bean: magasinInstance, field: 'ouvertLeMidi', 'error')}">
+            <label for="ouvertLeMidi">
+                <g:message code="ouvertLeMidi.label" default="ouvertLeMidi" />
+            </label>
+            <g:textField name="ouvertLeMidi" value="${magasinInstance?.ouvertLeMidi}"/>
+        </div>
+
         <div class="fieldcontation ${hasErrors(bean: magasinInstance, field: 'idVille', 'error')}">
             <label for="idVille">
                 <g:message code="codePostal.label" default="codePostal et ville" />

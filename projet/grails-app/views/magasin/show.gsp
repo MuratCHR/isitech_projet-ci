@@ -40,13 +40,13 @@ MENU NAVBAR
         <div class="navbar-collapse collapse" id="navbarCollapse" style="">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                    <a class="nav-link active" aria-current="page" href="../../#">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="magasin/index">Liste des magasins</a>
+                    <a class="nav-link active" aria-current="page" href="../../magasin/index">Liste des magasins</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="reservation/index">Réservation</a>
+                    <a class="nav-link active" aria-current="page" href="../../reservation/index">Réservation</a>
                 </li>
                 %{--                <li class="nav-item">--}%
                 %{--                    <a class="nav-link" href="#">Link</a>--}%
@@ -65,6 +65,8 @@ MENU NAVBAR
 <!-- Remove the container if you want to extend the Footer to full width. -->
 <body>
 
+
+
 <div class="container">
     <div class="row">
         <div class="col-sm">
@@ -75,6 +77,14 @@ MENU NAVBAR
                         <h5 class="card-title">${magasinInstance?.nom}</h5>
                         <p class="card-text">Jauge totale du magasin : ${magasinInstance?.placeTotale} places</p>
                         <p class="card-text">${fieldValue(bean: magasinInstance, field: "adresse") }, ${fieldValue(bean: magasinInstance.ville, field: "codePostal")}, ${fieldValue(bean: magasinInstance.ville, field: "nomVille")}</p>
+                        <p class="card-text">De ${fieldValue(bean: magasinInstance, field: "horaireOuverture") } à ${fieldValue(bean: magasinInstance, field: "horaireFermeture")}.
+                        <g:if test="${fieldValue(bean: magasinInstance, field: "ouvertLeMidi") == '1'}">
+                            <br><b>Ouvert entre 12 et 14h !</b><br>
+                        </g:if>
+                        <g:else>
+                            <br><b>Fermé entre 12 et 14h !</b><br>
+                        </g:else>
+                           </p>
                         <g:link  class="btn btn-primary" action="listeResa" id="${fieldValue(bean: magasinInstance, field: "id")}">
                             ${message(code: 'Je découvre les créneaux disponibles', default: 'Je découvre les créneaux disponibles')}
                         </g:link>
@@ -124,6 +134,9 @@ MENU NAVBAR
             </script>
         </div>
     </div>
+
+
+
 </div>
 
 </body>

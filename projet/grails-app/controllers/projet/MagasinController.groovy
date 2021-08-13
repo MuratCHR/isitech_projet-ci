@@ -7,14 +7,25 @@ import groovy.sql.GroovyResultSet
 import groovy.sql.Sql
 import projet.Magasin
 
+import java.sql.Timestamp
+import java.time.LocalDate
+import java.util.Date
+import java.text.SimpleDateFormat
+import groovy.time.TimeCategory
+import static java.util.Calendar.*
+
+
 class MagasinController {
     static scaffolding = Magasin
     static allowedMethods = [update: "PUT", save: "POST"]
     static responseFormats = ['html', 'xml', 'json']
+    def dataSource
+    def currentSession
 
     def index() {
         def magasinList = Magasin.list()
         [magasinList: magasinList]
+
     }
 
     def main() {
@@ -36,7 +47,9 @@ class MagasinController {
     }
 
     def listeResa() {
-        [magasinInstance: Magasin.get(params.id)]
+        def results = ceciEstUnTest(params.id)
+        def getByHoraire = getMagasinsInFrance(params.id)
+        [results: results,magasinInstance: Magasin.get(params.id), getByHoraire:getByHoraire]
     }
 
 
@@ -64,15 +77,120 @@ class MagasinController {
 
 
 
-    private List<GroovyResultSet> getMagasinsInFrance(String nomDuMagasin) {
-        def sql = new Sql(dataSource)
-        def entries = sql.rows("""
-SELECT DISTINCT * FROM magasin, ville WHERE nom LIKE :nomMagasin AND ville_id = ville.ID ORDER BY codePostal
-""", [nomMagasin : nomDuMagasin])
-        def data = currentSession.createSQLQuery(entries)
-        final result = data.list()
+
+
+    public Magasin ceciEstUnTest(String ID) {
+        Magasin.get(ID.toInteger())
+    }
+
+
+
+
+    public List<GroovyResultSet> getMagasinsInFrance(String ID) {
+        def idDuMagasin = ID.toInteger()
+        def result = []
+        def dt = new Date()
+        def sdf = new SimpleDateFormat("yyyy-MM-dd")
+        println sdf.format(dt)
+        def datePlusUn = use(TimeCategory){new Date() + 1.days}
+        println sdf.format(datePlusUn)
+        def datePlusDeux = use(TimeCategory){new Date() + 2.days}
+        println sdf.format(datePlusDeux)
+        def datePlusTrois = use(TimeCategory){new Date() + 3.days}
+        println sdf.format(datePlusTrois)
+        def datePlusQuatre = use(TimeCategory){new Date() + 4.days}
+        println sdf.format(datePlusQuatre)
+        def datePlusCinque = use(TimeCategory){new Date() + 5.days}
+        println sdf.format(datePlusCinque)
+        def datePlusSix = use(TimeCategory){new Date() + 6.days}
+        println sdf.format(datePlusSix)
+        println "Affichage : " + sdf.format(dt)
+
+
+        Sql sql = new Sql(dataSource)
+
+        result = sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '08:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(dt)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '09:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(dt)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '10:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(dt)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '11:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour: sdf.format(dt)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '12:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(dt)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '13:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(dt)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '14:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(dt)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '15:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(dt)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '16:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(dt)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '17:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(dt)])
+
+
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '08:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusUn)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '09:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusUn)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '10:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusUn)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '11:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour: sdf.format(datePlusUn)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '12:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusUn)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '13:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusUn)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '14:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusUn)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '15:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusUn)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '16:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusUn)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '17:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusUn)])
+
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '08:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusDeux)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '09:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusDeux)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '10:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusDeux)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '11:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour: sdf.format(datePlusDeux).toString()])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '12:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusDeux).toString()])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '13:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusDeux).toString()])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '14:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusDeux)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '15:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusDeux)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '16:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusDeux)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '17:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusDeux)])
+
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '08:00:00' AND reservation.dateReservation = :dateDujour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusTrois)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '09:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusTrois)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '10:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusTrois)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '11:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour: sdf.format(datePlusTrois).toString()])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '12:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusTrois).toString()])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '13:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusTrois).toString()])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '14:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusTrois)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '15:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusTrois)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '16:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusTrois)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '17:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusTrois)])
+
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '08:00:00' AND reservation.dateReservation = :dateDujour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusQuatre)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '09:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusQuatre)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '10:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusQuatre)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '11:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour: sdf.format(datePlusQuatre).toString()])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '12:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusQuatre).toString()])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '13:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusQuatre).toString()])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '14:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusQuatre)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '15:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusQuatre)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '16:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusQuatre)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '17:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusQuatre)])
+
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '08:00:00' AND reservation.dateReservation = :dateDujour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusCinque)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '09:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusCinque)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '10:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusCinque)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '11:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour: sdf.format(datePlusCinque).toString()])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '12:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusCinque).toString()])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '13:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusCinque).toString()])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '14:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusCinque)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '15:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusCinque)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '16:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusCinque)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '17:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusCinque)])
+
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '08:00:00' AND reservation.dateReservation = :dateDujour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusSix)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '09:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusSix)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '10:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusSix)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '11:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour: sdf.format(datePlusSix).toString()])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '12:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusSix).toString()])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '13:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusSix).toString()])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '14:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusSix)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '15:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusSix)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '16:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusSix)])
+        result += sql.rows("SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = :idDuMagasin) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = :idDuMagasin AND reservation.heureDebut = '17:00:00' AND reservation.dateReservation = :dateDuJour) as placeRestantes", [idDuMagasin:idDuMagasin, dateDuJour:sdf.format(datePlusSix)])
+
+
         return result
     }
+
 
     protected void notFound(String messageCode = null) {
         messageCode = messageCode ?: 'default.not.found.message'
