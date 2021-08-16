@@ -17,6 +17,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <!-- Script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+    <style>
+    #map { position: absolute; top: 100px; bottom: 0; width: 75%; }
+    </style>
 
 </head>
 
@@ -34,10 +40,10 @@ MENU NAVBAR
         <div class="navbar-collapse collapse" id="navbarCollapse" style="">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                    <a class="nav-link active" aria-current="page" href="../../#">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="reservation/index">Réservation</a>
+                    <a class="nav-link active" aria-current="page" href="../../reservation/index">Réservation</a>
                 </li>
                 %{--                <li class="nav-item">--}%
                 %{--                    <a class="nav-link" href="#">Link</a>--}%
@@ -53,45 +59,42 @@ MENU NAVBAR
     </div>
 </nav>
 
-
+<!-- Remove the container if you want to extend the Footer to full width. -->
 <body>
-<div class="container" style="padding-top: 140px;">
-        <g:form action="searchBarResult" class="myform">
-            <input class="form-control nomMagasin" type="text" aria-label="default input example" value="${nomDuMagasin}" style="text-align: left; font-size: 15px"  name="nomDuMagasin"  placeholder="Nom du magasin">
-            <input class="form-control codePostal" type="text" aria-label="default input example" value="${codePostal}" style="text-align: left; font-size: 15px" name="codePostal" placeholder="Code postal">
-            <button id="submit-values" class="btn btn-small btn-primary" type="submit">
-                <i class="icon-ok"></i>
-                Search
-            </button>
-        </g:form>
 
-    <h3 id="lesMagasinsLesPlusVus" style="padding-top: 60px; text-align: center">LES MAGASINS LES PLUS VISITÉS</h3>
-    <h5 id="magasinAlimentaire" style="padding-top: 20px; text-align: left">Catégorie alimentaire</h5>
 
-    <div class="text-center" style="padding-top: 50px;">
-        <g:each in="${magasinList}" status="j" var="magasinInstance">
-            <span style="padding: 20px;">
-                <a href="magasin/show/1">
-                    <img src="https://www.ipzen.com/app/uploads/2017/10/logo-carrefour.png" width="80" height="80" class="rounded-circle border border-primary"/>
-                </a>
-            </span>
-        </g:each>
-    </div>
-        <h5 id="magasinNonAlimentaire" style="padding-top: 40px; text-align: left">Catégorie non-alimentaire</h5>
-        <div class="text-center" style="padding-top: 50px;">
-            <g:each in="${magasinList}" status="j" var="magasinInstance">
-                <span style="padding: 20px;">
-                    <a href="magasin/show/1">
-                        <img src="https://www.ipzen.com/app/uploads/2017/10/logo-carrefour.png" width="80" height="80" class="rounded-circle border border-primary"/>
-                    </a>
-                </span>
+
+<div class="container">
+    <div class="container">
+        <div class="row align-items-start">
+            <g:each in="${searchBar}" var="r" >
+                <g:if test="${r == 'null'}">
+                    <div class="text-center" style="padding-top: 100px; padding-left: 20px;">
+                                Oup's, il semblerait qu'il n'y est rien d'intéressant ici .. on fait marche arrière ?
+                    </div>
+                </g:if>
+                <g:else>
+                    <div class="col">
+                        <div class="text-center" style="padding-top: 100px; padding-left: 20px;">
+                            <div class="card" style="width: 24rem;">
+                                <img class="card-img-top" width="300" height="300" src="https://www.ipzen.com/app/uploads/2017/10/logo-carrefour.png" alt="Logo du magasin">
+                                <div class="card-body">
+                                    <h5 class="card-title">${r.'nom'}</h5>
+                                    <p class="card-text">${r.'adresse'}, ${r.'codePostal'}, ${r.'nomVille'}</p>
+                                    <g:link  class="btn btn-primary" action="show" id="${r.ID}">
+                                        ${message(code: 'default.button.je.visite.le.magasin.label', default: 'Visiter le magasin')}
+                                    </g:link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </g:else>
             </g:each>
         </div>
+    </div>
 </div>
-
+<br><br><br><br>
 </body>
-<!-- Remove the container if you want to extend the Footer to full width. -->
-
 <!-- Footer -->
 <footer class="text-center text-white" style="background-color: #3f51b5">
     <!-- Grid container -->
@@ -112,11 +115,10 @@ footer {
     bottom:0px;
     width:100%;
 }
-
-
-.myform {
-    display : flex;
-}
 </style>
 </html>
 
+<!--
+SELECT (SELECT magasin.placeTotale FROM magasin WHERE magasin.ID = 1) - (SELECT SUM(reservation.nbPlace) FROM reservation WHERE reservation.iddumagasin = 1 AND reservation.heureDebut = '12:00:01' AND reservation.dateReservation = '2021-08-10') as placeRestantes
+
+-->

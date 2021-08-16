@@ -41,9 +41,6 @@ MENU NAVBAR
                     <a class="nav-link active" aria-current="page" href="../../#">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../../magasin/index">Liste des magasins</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="../../reservation/index">Réservation</a>
                 </li>
                 %{--                <li class="nav-item">--}%
@@ -75,6 +72,7 @@ MENU NAVBAR
         var getLeMoisSuivant = ladate.getMonth()
         var dateDebut = ladate.getDate()
         var heureRealTime = ladate.getHours();
+        console.log("Heure : " + heureRealTime);
         var datePlusSix = ladate.setDate((ladate.getDate() + 6))
         document.getElementById("testChangeMonth").innerHTML = "Du " + dateDebut + " " + tab_mois[ladate.getMonth()] + " " + ladate.getFullYear() + " au " +  + ladate.getDate() + " " + tab_mois[ladate.getMonth(ladate.setDate((ladate.getDate() + 6)))] + " " + ladate.getFullYear();
         var jourDeLaSemaine = new Date().toLocaleString('en-us', {  weekday: 'long' });
@@ -225,18 +223,28 @@ IF CONDITION POUR LE PREMIERJOUR : si heureactuelle > heure affichés, griser la
 </script>
 <g:each in="${getByHoraire}" var="r" id="1">
     <g:if test="${r.'placeRestantes' == null}">
-        ${magasinInstance.placeTotale}
         <script>
             listHoraires.push(${magasinInstance.placeTotale})
         </script>
     </g:if>
     <g:else>
-        ${r.'placeRestantes'}
         <script>
             listHoraires.push(${r.'placeRestantes'})
         </script>
     </g:else>
 </g:each>
+
+
+
+            <g:each in="${searchBar}" var="r" id="1">
+                uuu
+                uu
+                u
+                        ${r.'nom'}
+            </g:each>
+
+
+
             <script>
 
                 for (let heure = 8; heure < 18; heure++) {
@@ -315,66 +323,80 @@ IF CONDITION POUR LE PREMIERJOUR : si heureactuelle > heure affichés, griser la
                 btnCopy.className += " disabled";
                 btnCopy.onclick = null;
                 document.getElementById("12prem12").style.cssText = 'background-color:#C9C9C9;';
+                document.getElementById("12prem12").innerHTML = '12:00 - 13h00 : Fermé'
 
                 btnCopy = document.getElementById("12deux12");
                 btnCopy.className += " disabled";
                 btnCopy.onclick = null;
                 document.getElementById("12deux12").style.cssText = 'background-color:#C9C9C9;';
+                document.getElementById("12deux12").innerHTML = '12:00 - 13h00 : Fermé'
 
                 btnCopy = document.getElementById("12trois12");
                 btnCopy.className += " disabled";
                 btnCopy.onclick = null;
                 document.getElementById("12trois12").style.cssText = 'background-color:#C9C9C9;';
+                document.getElementById("12trois12").innerHTML = '12:00 - 13h00 : Fermé'
 
                 btnCopy = document.getElementById("12quatre12");
                 btnCopy.className += " disabled";
                 btnCopy.onclick = null;
                 document.getElementById("12quatre12").style.cssText = 'background-color:#C9C9C9;';
+                document.getElementById("12quatre12").innerHTML = '12:00 - 13h00 : Fermé'
 
                 btnCopy = document.getElementById("12cinq12");
                 btnCopy.className += " disabled";
                 btnCopy.onclick = null;
                 document.getElementById("12cinq12").style.cssText = 'background-color:#C9C9C9;';
+                document.getElementById("12cinq12").innerHTML = '12:00 - 13h00 : Fermé'
 
                 btnCopy = document.getElementById("12six12");
                 btnCopy.className += " disabled";
                 btnCopy.onclick = null;
                 document.getElementById("12six12").style.cssText = 'background-color:#C9C9C9;';
+                document.getElementById("12six12").innerHTML = '12:00 - 13h00 : Fermé'
 
                 btnCopy = document.getElementById("12sept12");
                 btnCopy.className += " disabled";
                 btnCopy.onclick = null;
                 document.getElementById("12sept12").style.cssText = 'background-color:#C9C9C9;';
+                document.getElementById("12sept12").innerHTML = '12:00 - 13h00 : Fermé'
 
 
                 btnCopy = document.getElementById("13prem13");
                 btnCopy.className += " disabled";
                 btnCopy.onclick = null;
                 document.getElementById("13prem13").style.cssText = 'background-color:#C9C9C9;';
+                document.getElementById("13prem13").innerHTML = '13:00 - 14h00 : Fermé'
                 btnCopy = document.getElementById("13deux13");
                 btnCopy.className += " disabled";
                 btnCopy.onclick = null;
                 document.getElementById("13deux13").style.cssText = 'background-color:#C9C9C9;';
+                document.getElementById("13deux13").innerHTML = '13:00 - 14h00 : Fermé'
                 btnCopy = document.getElementById("13trois13");
                 btnCopy.className += " disabled";
                 btnCopy.onclick = null;
                 document.getElementById("13trois13").style.cssText = 'background-color:#C9C9C9;';
+                document.getElementById("13trois13").innerHTML = '13:00 - 14h00 : Fermé'
                 btnCopy = document.getElementById("13quatre13");
                 btnCopy.className += " disabled";
                 btnCopy.onclick = null;
                 document.getElementById("13quatre13").style.cssText = 'background-color:#C9C9C9;';
+                document.getElementById("13quatre13").innerHTML = '13:00 - 14h00 : Fermé'
                 btnCopy = document.getElementById("13cinq13");
                 btnCopy.className += " disabled";
                 btnCopy.onclick = null;
                 document.getElementById("13cinq13").style.cssText = 'background-color:#C9C9C9;';
+                document.getElementById("13cinq13").innerHTML = '13:00 - 14h00 : Fermé'
                 btnCopy = document.getElementById("13six13");
                 btnCopy.className += " disabled";
                 btnCopy.onclick = null;
                 document.getElementById("13six13").style.cssText = 'background-color:#C9C9C9;';
+                document.getElementById("13six13").innerHTML = '13:00 - 14h00 : Fermé'
                 btnCopy = document.getElementById("13sept13");
                 btnCopy.className += " disabled";
                 btnCopy.onclick = null;
                 document.getElementById("13sept13").style.cssText = 'background-color:#C9C9C9;';
+                document.getElementById("13sept13").innerHTML = '13:00 - 14h00 : Fermé'
             </script>
         </g:if>
     </g:each>

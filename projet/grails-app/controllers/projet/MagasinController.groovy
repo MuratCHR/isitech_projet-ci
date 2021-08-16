@@ -52,6 +52,11 @@ class MagasinController {
         [results: results,magasinInstance: Magasin.get(params.id), getByHoraire:getByHoraire]
     }
 
+    def searchBarResult() {
+        def searchBar = searchBar(params.nomDuMagasin, params.codePostal)
+        [searchBar:searchBar]
+    }
+
 
     @Transactional
     def create() {
@@ -200,5 +205,27 @@ class MagasinController {
                 redirect action: "index", method: "GET"
             }
         }
+    }
+
+    public List<GroovyResultSet> searchBar(String nomDuMagasin, String codePostal) {
+
+        println 'nom magasin : ' + nomDuMagasin
+        println 'code postal : ' + codePostal
+        def result = []
+        Sql sql = new Sql(dataSource)
+        def nomDuMagasinModif = '%'+nomDuMagasin+'%'
+        if(codePostal == null) {
+            result = sql.rows("SELECT magasin.ID, magasin.nom, magasin.adresse, magasin.placeTotale, magasin.identifiantVille, magasin.iddelacategorie, magasin.ville_id, magasin.categorie_id, magasin.horaireOuverture, magasin.horaireFermeture, magasin.ouvertleMidi, ville.codePostal, ville.nomVille FROM magasin, ville   WHERE nom LIKE :nomDuMagasin AND magasin.identifiantVille = ville.ID", [nomDuMagasin:nomDuMagasinModif])
+
+        }else {
+            def codePostalModif = '%'+codePostal+'%'
+            result = sql.rows("SELECT magasin.ID, magasin.nom, magasin.adresse, magasin.placeTotale, magasin.identifiantVille, magasin.iddelacategorie, magasin.ville_id, magasin.categorie_id, magasin.horaireOuverture, magasin.horaireFermeture, magasin.ouvertleMidi, ville.codePostal, ville.nomVille FROM magasin, ville  WHERE magasin.nom LIKE :nomDuMagasin AND ville.codePostal LIKE :codePostal AND magasin.identifiantVille = ville.ID", [nomDuMagasin:nomDuMagasinModif, codePostal: codePostalModif])
+        }
+
+        if(result == []) {
+            result.add('null')
+        }
+        println 'Result : ' + result
+        return result
     }
 }

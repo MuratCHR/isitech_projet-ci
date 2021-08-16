@@ -183,8 +183,6 @@ MENU NAVBAR
 </g:form>
 
 
-<g:include action="getMagasinsInFrance" params="[nomMagasin: 'Carrefour Market']" />
-
 <style type="text/css">
     body {padding: 0}
 </style>

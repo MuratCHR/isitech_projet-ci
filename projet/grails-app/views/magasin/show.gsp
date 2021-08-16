@@ -43,9 +43,6 @@ MENU NAVBAR
                     <a class="nav-link active" aria-current="page" href="../../#">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../../magasin/index">Liste des magasins</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="../../reservation/index">Réservation</a>
                 </li>
                 %{--                <li class="nav-item">--}%
