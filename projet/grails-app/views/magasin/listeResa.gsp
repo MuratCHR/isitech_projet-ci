@@ -64,7 +64,7 @@ MENU NAVBAR
 <script src="//cdn.jsdelivr.net/npm/less@4.1.1" >
 </script>
 <div class="time-picker-container" style="width: 100%">
-    <h4 id="testChangeMonth" style="text-align: center">Aout 2021</h4>
+    <h5 id="testChangeMonth" style="text-align: center">Aout 2021</h5>
 
     <script>
         var ladate=new Date()
@@ -85,7 +85,7 @@ MENU NAVBAR
                 <li class="date-slot-wrapper">
                     <div class="date-slot-item">
                         <span class="date-slot-day" id="jour1">Lundi</span>
-                        <span class="date-slot-date" id="dayjour1">11</span>
+                        <span class="date-slot-date" id="dayjour1"></span>
                     </div>
                 </li>
                 <li class="date-slot-wrapper">
@@ -234,6 +234,10 @@ IF CONDITION POUR LE PREMIERJOUR : si heureactuelle > heure affichés, griser la
     </g:else>
 </g:each>
 
+            <script>
+                console.log("Liste horaire : " + listHoraires)
+            </script>
+
 
 
             <g:each in="${searchBar}" var="r" id="1">
@@ -263,7 +267,7 @@ IF CONDITION POUR LE PREMIERJOUR : si heureactuelle > heure affichés, griser la
                     let heuremoinsDix = heure-10
                     let variable1 = heuremoinsDix + "deux" + heuremoinsDix
                     document.getElementById(variable1).innerHTML = text;
-                    document.getElementById(variable1).setAttribute('value', heure + ' ' + heurePlusTrente);
+                    document.getElementById(variable1).setAttribute('value', heure-10 + ' ' + heurePlusTrente);
                 }
 
                 for (let heure = 28; heure < 38; heure++) {
@@ -272,7 +276,7 @@ IF CONDITION POUR LE PREMIERJOUR : si heureactuelle > heure affichés, griser la
                     let heuremoinsDix = heure-20
                     let variable1 = heuremoinsDix + "trois" + heuremoinsDix
                     document.getElementById(variable1).innerHTML = text;
-                    document.getElementById(variable1).setAttribute('value', heure + ' ' + heurePlusTrente);
+                    document.getElementById(variable1).setAttribute('value', heure-20 + ' ' + heurePlusTrente);
                 }
 
                 for (let heure = 38; heure < 48; heure++) {
@@ -281,7 +285,7 @@ IF CONDITION POUR LE PREMIERJOUR : si heureactuelle > heure affichés, griser la
                     let heuremoinsDix = heure-30
                     let variable1 = heuremoinsDix + "quatre" + heuremoinsDix
                     document.getElementById(variable1).innerHTML = text;
-                    document.getElementById(variable1).setAttribute('value', heure + ' ' + heurePlusTrente);
+                    document.getElementById(variable1).setAttribute('value', heure-30 + ' ' + heurePlusTrente);
                 }
 
 
@@ -291,7 +295,7 @@ IF CONDITION POUR LE PREMIERJOUR : si heureactuelle > heure affichés, griser la
                     let heuremoinsDix = heure-40
                     let variable1 = heuremoinsDix + "cinq" + heuremoinsDix
                     document.getElementById(variable1).innerHTML = text;
-                    document.getElementById(variable1).setAttribute('value', heure + ' ' + heurePlusTrente);
+                    document.getElementById(variable1).setAttribute('value', heure-40 + ' ' + heurePlusTrente);
                 }
 
                 for (let heure = 58; heure < 68; heure++) {
@@ -300,7 +304,7 @@ IF CONDITION POUR LE PREMIERJOUR : si heureactuelle > heure affichés, griser la
                     let heuremoinsDix = heure-50
                     let variable1 = heuremoinsDix + "six" + heuremoinsDix
                     document.getElementById(variable1).innerHTML = text;
-                    document.getElementById(variable1).setAttribute('value', heure + ' ' + heurePlusTrente);
+                    document.getElementById(variable1).setAttribute('value', heure-50 + ' ' + heurePlusTrente);
                 }
 
                 for (let heure = 68; heure < 78; heure++) {
@@ -309,7 +313,7 @@ IF CONDITION POUR LE PREMIERJOUR : si heureactuelle > heure affichés, griser la
                     let heuremoinsDix = heure-60
                     let variable1 = heuremoinsDix + "sept" + heuremoinsDix
                     document.getElementById(variable1).innerHTML = text;
-                    document.getElementById(variable1).setAttribute('value', heure + ' ' + heurePlusTrente);
+                    document.getElementById(variable1).setAttribute('value', heure-60 + ' ' + heurePlusTrente);
                 }
             </script>
         </div>
@@ -401,10 +405,6 @@ IF CONDITION POUR LE PREMIERJOUR : si heureactuelle > heure affichés, griser la
         </g:if>
     </g:each>
 
-
-
-
-
 </div>
 <style type="text/css">
 .time-picker {
@@ -486,6 +486,7 @@ IF CONDITION POUR LE PREMIERJOUR : si heureactuelle > heure affichés, griser la
 
 
 <script type="text/javascript">
+    var ceciEstUnAutreTest = 0;
     var ladate=new Date()
     var tab_mois=new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
     var getLeMoisSuivant = ladate.getMonth()
@@ -503,6 +504,7 @@ IF CONDITION POUR LE PREMIERJOUR : si heureactuelle > heure affichés, griser la
     var date = new Date();
     date.setDate(date.getDate() + 1);
 
+    document.getElementById("dayjour1").setAttribute('value', tomorrow.getUTCDate());
     document.getElementById("jour1").innerHTML = jourDeLaSemaine.bold();
     document.getElementById("dayjour1").innerHTML = tomorrow.getUTCDate();
 
@@ -510,7 +512,8 @@ IF CONDITION POUR LE PREMIERJOUR : si heureactuelle > heure affichés, griser la
     jourDeLaSemaine = date.toLocaleString('fr-fr', {  weekday: 'long' });
     date.setDate(date.getDate() + 1);
     document.getElementById("jour2").innerHTML = jourDeLaSemaine.bold();
-    document.getElementById("dayjour2").innerHTML = tomorrow.getUTCDate();
+    document.getElementById("dayjour2").innerHTML = tomorrow.getUTCDate()
+
 
     tomorrow.setDate(tomorrow.getDate() + 1);
     jourDeLaSemaine = date.toLocaleString('fr-fr', {  weekday: 'long' });
@@ -548,16 +551,7 @@ IF CONDITION POUR LE PREMIERJOUR : si heureactuelle > heure affichés, griser la
 </body>
 </body>
 <!-- Footer -->
-<footer class="text-center text-white" style="background-color: #3f51b5">
-    <!-- Grid container -->
-    <div
-            class="text-center p-3"
-            style="background-color: rgba(0, 0, 0, 0.2)"
-    >
-        © 2021 Copyright Tous droits réservés
-    </div>
-    <!-- Copyright -->
-</footer>
+
 <!-- Footer -->
 
 <style type="text/css">
@@ -567,11 +561,11 @@ footer {
     bottom:0px;
     width:100%;
 }
-
 </style>
 
-<script>
 
+
+<script>
     function hasDuplicates(array) {
         var valuesSoFar = Object.create(null);
         for (var i = 0; i < array.length; ++i) {
@@ -620,15 +614,20 @@ footer {
     }
 
 
+
+
     var compteur = 1;
     var listId = []
     var premierNombreRepere = 0;
 
     function getIdClick(clicked_id)
     {
+        ceciEstUnAutreTest = 1
+        document.getElementById("testAffichageForm").style.cssText = 'display: block';
         var x = document.getElementById(clicked_id).value;
         var id = clicked_id;
         console.log('ID : ' + id)
+        console.log('Valeur : ' + x)
         listId.push(clicked_id);
         premierNombreRepere = parseInt(listId[0]);
 
@@ -643,6 +642,7 @@ footer {
             if(hasDuplicates(listId)) {
                 if(parseInt(clicked_id) === premierNombreRepere) {
                     console.log('petit deplicata horaire de base');
+                    document.getElementById("testAffichageForm").style.cssText = 'display: none';
                     document.getElementById(clicked_id).style.cssText = 'background-color: none;';
                     premierNombreRepere = premierNombreRepere+1
                     listId = []
@@ -685,6 +685,7 @@ footer {
                     premierNombreRepere = null;
                     listId = [];
                     compteur = 0;
+                    document.getElementById("testAffichageForm").style.cssText = 'display: none';
                 }
                 document.getElementById(clicked_id).style.cssText = 'background-color: none;';
                 console.log('Nombre repère : ' + premierNombreRepere);
@@ -699,7 +700,128 @@ footer {
             }
         }
     }
+
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+
+
+    function testFonction() {
+        var x = document.getElementById(listId[0]).value+1;
+        console.log('ID jour : ' + getOnlyId(listId)[0])
+        var idDuJour = getOnlyId(listId)[0]
+
+        if(idDuJour == "prem") {
+            var date = new Date();
+            var laDate = formatDate(date)
+            console.log(formatDate(date))
+            document.getElementById("dateReservation").setAttribute('value', laDate);
+        }
+
+        if(idDuJour == "deux") {
+            var date = new Date();
+            date.setDate(date.getDate() + 1);
+            var laDate = formatDate(date)
+            console.log(formatDate(date))
+            document.getElementById("dateReservation").setAttribute('value', laDate);
+        }
+
+        if(idDuJour == "trois") {
+            var date = new Date();
+            date.setDate(date.getDate() + 2);
+            var laDate = formatDate(date)
+            console.log(formatDate(date))
+            document.getElementById("dateReservation").setAttribute('value', laDate);
+        }
+
+        if(idDuJour == "quatre") {
+            var date = new Date();
+            date.setDate(date.getDate() + 3);
+            var laDate = formatDate(date)
+            console.log(formatDate(date))
+            document.getElementById("dateReservation").setAttribute('value', laDate);
+        }
+
+        if(idDuJour == "cinq") {
+            var date = new Date();
+            date.setDate(date.getDate() + 4);
+            var laDate = formatDate(date)
+            console.log(formatDate(date))
+            document.getElementById("dateReservation").setAttribute('value', laDate);
+        }
+
+        if(idDuJour == "six") {
+            var date = new Date();
+            date.setDate(date.getDate() + 5);
+            var laDate = formatDate(date)
+            console.log(formatDate(date))
+            document.getElementById("dateReservation").setAttribute('value', laDate);
+        }
+
+        if(idDuJour == "sept") {
+            var date = new Date();
+            date.setDate(date.getDate() + 6);
+            var laDate = formatDate(date)
+            console.log(formatDate(date))
+            document.getElementById("dateReservation").setAttribute('value', laDate);
+        }
+
+        console.log('Affichage 1h en plus : ' + x)
+        document.getElementById("heureDebutForm").setAttribute('value', document.getElementById(listId[0]).value + ':00:00');
+        document.getElementById("heureFinForm").setAttribute('value', x + ':00:00');
+    }
 </script>
+<div id="testAffichageForm" style="display:none;" onclick="testFonction()">
+    <g:form controller="reservation"  action="create" >
+        <fieldset class="form">
+            <div class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'idMagasin', 'error')}">
+                <g:hiddenField name="idMagasin" value="${fieldValue(bean: magasinInstance, field: "id") }"/>
+            </div>
+
+            <div style="display:none;" class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'dateReservation', 'error')}">
+                <label for="name">dateReservation</label>
+                <input type="text" id="dateReservation" name="dateReservation">
+            </div>
+
+            <div style="display:none;" class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'heureDebut', 'error')}">
+                <label for="heureDebut">heureDebut</label>
+                <input type="text"  id="heureDebutForm" class="heureDebut" name="heureDebut">
+            </div>
+
+            <div style="display:none;" class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'heureDebut', 'error')}">
+                <label for="heureFin">heureFin</label>
+                <input type="text"  id="heureFinForm" class="heureFin" name="heureFin">
+            </div>
+
+            <div class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'nbPlace', 'error')}">
+                <label for="nbPlace">
+                    <g:message code="nbPlace.label" default="nbPlace" />
+                </label>
+                <g:textField name="nbPlace" value="${ReservationInstance?.nbPlace}"/>
+            </div>
+
+            <div class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'idPersonne', 'error')}">
+                <label for="idPersonne">
+                    <g:message code="idPersonne.label" default="idPersonne" />
+                </label>
+                <g:textField name="idPersonne" value="0"/>
+            </div>
+        </fieldset>
+        <fieldset class="buttons">
+            <g:submitButton name="Ajouter" class="create" />
+        </fieldset>
+    </g:form>
+</div>
 
 </html>
 
