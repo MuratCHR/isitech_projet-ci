@@ -564,7 +564,7 @@ footer {
 </style>
 
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
     function hasDuplicates(array) {
         var valuesSoFar = Object.create(null);
@@ -624,6 +624,7 @@ footer {
     {
         ceciEstUnAutreTest = 1
         document.getElementById("testAffichageForm").style.cssText = 'display: block';
+        document.getElementById("champNbPlace").style.cssText = 'display: block';
         var x = document.getElementById(clicked_id).value;
         var id = clicked_id;
         console.log('ID : ' + id)
@@ -637,12 +638,26 @@ footer {
         console.log('Nombre repère : ' + premierNombreRepere)
         console.log('Liste : ' + listId);
         console.log('--------------------------')
+
+        if(listId.length > 1) {
+            document.getElementById("cestledeuxiemebutton").style.cssText = 'display: block';
+            document.getElementById("jefaisdisparaitrelebouton").style.cssText = 'display: none';
+
+
+        }else if (listId.length === 1){
+            document.getElementById("cestledeuxiemebutton").style.cssText = 'display: none';
+            document.getElementById("testAffichageForm").style.cssText = 'display: block';
+            document.getElementById("jefaisdisparaitrelebouton").style.cssText = 'display: block';
+        }
+
         if(parseInt(listId[listId.length - 1]) + 1 === premierNombreRepere && compteur <= 2 && getOnlyId(listId)[0] == getOnlyId(listId)[listId.length-1] || parseInt(listId[listId.length - 1]) - 1 === premierNombreRepere && compteur <= 2 && getOnlyId(listId)[0] == getOnlyId(listId)[listId.length-1] || parseInt(listId[listId.length - 1]) === premierNombreRepere && compteur <= 2 && getOnlyId(listId)[0] == getOnlyId(listId)[listId.length-1] ) {
 
             if(hasDuplicates(listId)) {
                 if(parseInt(clicked_id) === premierNombreRepere) {
                     console.log('petit deplicata horaire de base');
                     document.getElementById("testAffichageForm").style.cssText = 'display: none';
+                    document.getElementById("cestledeuxiemebutton").style.cssText = 'display: none';
+                    document.getElementById("champNbPlace").style.cssText = 'display: none';
                     document.getElementById(clicked_id).style.cssText = 'background-color: none;';
                     premierNombreRepere = premierNombreRepere+1
                     listId = []
@@ -686,6 +701,7 @@ footer {
                     listId = [];
                     compteur = 0;
                     document.getElementById("testAffichageForm").style.cssText = 'display: none';
+                    document.getElementById("cestledeuxiemebutton").style.cssText = 'display: none';
                 }
                 document.getElementById(clicked_id).style.cssText = 'background-color: none;';
                 console.log('Nombre repère : ' + premierNombreRepere);
@@ -776,52 +792,216 @@ footer {
             document.getElementById("dateReservation").setAttribute('value', laDate);
         }
 
-        console.log('Affichage 1h en plus : ' + x)
-        document.getElementById("heureDebutForm").setAttribute('value', document.getElementById(listId[0]).value + ':00:00');
-        document.getElementById("heureFinForm").setAttribute('value', x + ':00:00');
+            console.log('Affichage 1h en plus : ' + x)
+            document.getElementById("heureDebutForm").setAttribute('value', document.getElementById(listId[0]).value + ':00:00');
+            document.getElementById("heureFinForm").setAttribute('value', x + ':00:00');
+
+    }
+
+    function secondForm() {
+        if (listId.length > 1) {
+            testFonction()
+            alert("ON EST DANS LA FONCTION")
+            alert(listId[1])
+            alert('ID magasin  : ' + document.getElementById("idMagasin").value)
+            var x = document.getElementById(listId[1]).value+1;
+            var y = document.getElementById(listId[0]).value+1;
+            console.log('ID jour : ' + getOnlyId(listId)[1])
+            var idDuJour = getOnlyId(listId)[1]
+            console.log('ON A CLIQUE SUR 2 CRENEAUX')
+            document.getElementById("heureDebutForm3").setAttribute('value', document.getElementById(listId[0]).value + ':00:00');
+            document.getElementById("heureDebutForm2").setAttribute('value', document.getElementById(listId[1]).value + ':00:00');
+            alert('nb Place : ' + document.getElementById("nbPlace").value)
+            document.getElementById("nbPlace2").setAttribute('value', document.getElementById("nbPlace").value);
+            document.getElementById("nbPlace3").setAttribute('value', document.getElementById("nbPlace").value);
+            document.getElementById("heureFinForm2").setAttribute('value', x + ':00:00');
+            document.getElementById("heureFinForm3").setAttribute('value', y + ':00:00');
+            alert('heure debut : ' +  document.getElementById(listId[0]).value + ':00:00')
+            alert('heure debutetfin: ' +  y + ':00:00')
+            alert('heure debut2 : ' +  document.getElementById(listId[1]).value + ':00:00')
+            alert('heure debutetfin2: ' +  x + ':00:00')
+
+            if (idDuJour == "prem") {
+                var date = new Date();
+                var laDate = formatDate(date)
+                console.log(formatDate(date))
+                document.getElementById("dateReservation2").setAttribute('value', laDate);
+                document.getElementById("dateReservation3").setAttribute('value', laDate);
+            }
+
+            if (idDuJour == "deux") {
+                var date = new Date();
+                date.setDate(date.getDate() + 1);
+                var laDate = formatDate(date)
+                console.log(formatDate(date))
+                document.getElementById("dateReservation2").setAttribute('value', laDate);
+                document.getElementById("dateReservation3").setAttribute('value', laDate);
+            }
+
+            if (idDuJour == "trois") {
+                var date = new Date();
+                date.setDate(date.getDate() + 2);
+                var laDate = formatDate(date)
+                console.log(formatDate(date))
+                document.getElementById("dateReservation2").setAttribute('value', laDate);
+                document.getElementById("dateReservation3").setAttribute('value', laDate);
+            }
+
+            if (idDuJour == "quatre") {
+                var date = new Date();
+                date.setDate(date.getDate() + 3);
+                var laDate = formatDate(date)
+                console.log(formatDate(date))
+                document.getElementById("dateReservation2").setAttribute('value', laDate);
+                document.getElementById("dateReservation3").setAttribute('value', laDate);
+            }
+
+            if (idDuJour == "cinq") {
+                var date = new Date();
+                date.setDate(date.getDate() + 4);
+                var laDate = formatDate(date)
+                console.log(formatDate(date))
+                document.getElementById("dateReservation2").setAttribute('value', laDate);
+                document.getElementById("dateReservation3").setAttribute('value', laDate);
+            }
+
+            if (idDuJour == "six") {
+                var date = new Date();
+                date.setDate(date.getDate() + 5);
+                var laDate = formatDate(date)
+                console.log(formatDate(date))
+                document.getElementById("dateReservation2").setAttribute('value', laDate);
+                document.getElementById("dateReservation3").setAttribute('value', laDate);
+            }
+
+            if (idDuJour == "sept") {
+                    var date = new Date();
+                    date.setDate(date.getDate() + 6);
+                    var laDate = formatDate(date)
+                    console.log(formatDate(date))
+                    document.getElementById("dateReservation2").setAttribute('value', laDate);
+                document.getElementById("dateReservation3").setAttribute('value', laDate);
+                }
+            }else {
+            testFonction()
+            document.forms["jetestUnForm"].submit();
+        }
     }
 </script>
+
+
+
+
 <div id="testAffichageForm" style="display:none;" onclick="testFonction()">
-    <g:form controller="reservation"  action="create" >
-        <fieldset class="form">
-            <div class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'idMagasin', 'error')}">
-                <g:hiddenField name="idMagasin" value="${fieldValue(bean: magasinInstance, field: "id") }"/>
-            </div>
+    <div>
+        <g:form controller="reservation" >
+            <fieldset class="form">
+                <div class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'idMagasin', 'error')}">
+                    <g:hiddenField name="idMagasin" value="${fieldValue(bean: magasinInstance, field: "id") }"/>
+                </div>
 
-            <div style="display:none;" class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'dateReservation', 'error')}">
-                <label for="name">dateReservation</label>
-                <input type="text" id="dateReservation" name="dateReservation">
-            </div>
+                <div style="display:none;" class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'dateReservation', 'error')}">
+                    <label for="name">dateReservation</label>
+                    <input type="text" id="dateReservation" name="dateReservation">
+                </div>
 
-            <div style="display:none;" class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'heureDebut', 'error')}">
-                <label for="heureDebut">heureDebut</label>
-                <input type="text"  id="heureDebutForm" class="heureDebut" name="heureDebut">
-            </div>
+                <div style="display:none;" class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'heureDebut', 'error')}">
+                    <label for="heureDebut">heureDebut</label>
+                    <input type="text"  id="heureDebutForm" class="heureDebut" name="heureDebut">
+                </div>
 
-            <div style="display:none;" class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'heureDebut', 'error')}">
-                <label for="heureFin">heureFin</label>
-                <input type="text"  id="heureFinForm" class="heureFin" name="heureFin">
-            </div>
+                <div style="display:none;" class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'heureFin', 'error')}">
+                    <label for="heureFin">heureFin</label>
+                    <input type="text"  id="heureFinForm" class="heureFin" name="heureFin">
+                </div>
 
-            <div class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'nbPlace', 'error')}">
-                <label for="nbPlace">
-                    <g:message code="nbPlace.label" default="nbPlace" />
-                </label>
-                <g:textField name="nbPlace" value="${ReservationInstance?.nbPlace}"/>
-            </div>
+                <div id="champNbPlace" class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'nbPlace', 'error')}">
+                    <label for="nbPlace">
+                        <g:message code="nbPlace.label" default="nombre de place" />
+                    </label>
+                    <g:textField name="nbPlace" value="${ReservationInstance?.nbPlace}"/>
+                </div>
 
-            <div class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'idPersonne', 'error')}">
-                <label for="idPersonne">
-                    <g:message code="idPersonne.label" default="idPersonne" />
-                </label>
-                <g:textField name="idPersonne" value="0"/>
-            </div>
-        </fieldset>
-        <fieldset class="buttons">
-            <g:submitButton name="Ajouter" class="create" />
-        </fieldset>
-    </g:form>
+                <div class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'idPersonne', 'error')}">
+                    <g:hiddenField name="idPersonne" value="0"/>
+                </div>
+            </fieldset>
+            <g:actionSubmit id="jefaisdisparaitrelebouton" name="jetestUnForm" action="create" value="form1" />
+        </g:form>
+    </div>
+
+
+
+
+
+
+
 </div>
+
+
+
+    <div id="cestledeuxiemebutton" style="display:none;">
+        <g:form controller="reservation"  >
+            <fieldset class="form">
+                <div class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'idMagasin', 'error')}">
+                    <g:hiddenField name="idMagasin" value="${fieldValue(bean: magasinInstance, field: "id") }"/>
+                </div>
+
+                <div style="display:none;" class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'dateReservation', 'error')}">
+                    <label for="name">dateReservation</label>
+                    <input type="text" id="dateReservation3" name="dateReservation" value="2021-08-18">
+                </div>
+
+                <div style="display:none;" class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'heureDebut', 'error')}">
+                    <label for="heureDebut">heureDebut</label>
+                    <input type="text"  id="heureDebutForm3" class="heureDebut" name="heureDebut">
+                </div>
+
+                <div style="display:none;" class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'heureFin', 'error')}">
+                    <label for="heureFin">heureFin</label>
+                    <input type="text"  id="heureFinForm3" class="heureFin" name="heureFin" value="17:00:00">
+                </div>
+
+                <div class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'nbPlace', 'error')}">
+                    <g:hiddenField id="nbPlace2" name="nbPlace"/>
+                </div>
+
+                <div class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'idPersonne', 'error')}">
+                    <g:hiddenField name="idPersonne" value="0"/>
+                </div>
+            </fieldset>
+            <fieldset class="form">
+                <div class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'idMagasin', 'error')}">
+                    <g:hiddenField name="idMagasin" value="${fieldValue(bean: magasinInstance, field: "id") }"/>
+                </div>
+
+                <div style="display:none;" class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'dateReservation', 'error')}">
+                    <label for="name">dateReservation</label>
+                    <input type="text" id="dateReservation2" name="dateReservation">
+                </div>
+
+                <div style="display:none;" class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'heureDebut', 'error')}">
+                    <label for="heureDebut">heureDebut</label>
+                    <input type="text"  id="heureDebutForm2" class="heureDebut" name="heureDebut">
+                </div>
+
+                <div style="display:none;" class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'heureFin', 'error')}">
+                    <label for="heureFin">heureFin</label>
+                    <input type="text"  id="heureFinForm2" class="heureFin" name="heureFin">
+                </div>
+
+                <div class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'nbPlace', 'error')}">
+                    <g:hiddenField id="nbPlace3" name="nbPlace"/>
+                </div>
+
+                <div class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'idPersonne', 'error')}">
+                    <g:hiddenField name="idPersonne" value="0"/>
+                </div>
+            </fieldset>
+            <g:actionSubmit name="jetestDeuxForm" action="create2" value="form2" onclick="secondForm()"/>
+        </g:form>
+    </div>
+
 
 </html>
 

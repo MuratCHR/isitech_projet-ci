@@ -3,7 +3,6 @@ import groovy.sql.Sql
 import java.sql.Time
 
 class Reservation {
-    def dataSource
     int id
     int idMagasin
     String dateReservation
@@ -14,7 +13,18 @@ class Reservation {
     Magasin magasin
 
 
+    Reservation() {
+        //Execute post creation code
+    }
 
+    Reservation(String un, String deux, String trois, String quatre, String cinq, String six) {
+        this.idMagasin = un.toInteger()
+        this.dateReservation = deux
+        this.heureDebut = trois
+        this.heureFin = quatre
+        this.nbPlace = cinq.toInteger()
+        this.idPersonne = six.toInteger()
+    }
     static mapping = {
         table 'reservation'
         version false
