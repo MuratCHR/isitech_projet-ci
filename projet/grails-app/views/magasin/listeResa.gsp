@@ -134,87 +134,157 @@ IF CONDITION POUR LE PREMIERJOUR : si heureactuelle > heure affichés, griser la
 -->
             <ul class="time-slot">
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="8prem8"></li>
+                <input id="8prem8nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="9prem9"></li>
+                <input id="9prem9nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="10prem10"></li>
+                <input id="10prem10nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="11prem11"></li>
+                <input id="11prem11nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="12prem12"></li>
+                <input id="12prem12nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="13prem13"></li>
+                <input id="13prem13nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="14prem14"></li>
+                <input id="14prem14nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="15prem15"></li>
+                <input id="15prem15nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="16prem16"></li>
+                <input id="16prem16nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="17prem17"></li>
+                <input id="17prem17nbPlace" type="hidden" >
             </ul>
             <ul class="time-slot">
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="8deux8"></li>
+                <input id="8deux8nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="9deux9"></li>
+                <input id="9deux9nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="10deux10"></li>
+                <input id="10deux10nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="11deux11"></li>
+                <input id="11deux11nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="12deux12"></li>
+                <input id="12deux12nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="13deux13"></li>
+                <input id="13deux13nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="14deux14"></li>
+                <input id="14deux14nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="15deux15"></li>
+                <input id="15deux15nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)"  id="16deux16"></li>
+                <input id="16deux16nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="17deux17"></li>
+                <input id="17deux17nbPlace" type="hidden" >
             </ul>
             <ul class="time-slot">
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="8trois8"></li>
+                <input id="8trois8nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="9trois9"></li>
+                <input id="9trois9nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="10trois10"></li>
+                <input id="10trois10nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="11trois11"></li>
+                <input id="11trois11nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="12trois12"></li>
+                <input id="12trois12nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="13trois13"></li>
+                <input id="13trois13nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="14trois14"></li>
+                <input id="14trois14nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="15trois15"></li>
+                <input id="15trois15nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="16trois16"></li>
+                <input id="16trois16nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="17trois17"></li>
+                <input id="17trois17nbPlace" type="hidden" >
             </ul>
             <ul class="time-slot">
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="8quatre8"></li>
+                <input id="8quatre8nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="9quatre9"></li>
+                <input id="9quatre9nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="10quatre10"></li>
+                <input id="10quatre10nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="11quatre11"></li>
+                <input id="11quatre11nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="12quatre12"></li>
+                <input id="12quatre12nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="13quatre13"></li>
+                <input id="13quatre13nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="14quatre14"></li>
+                <input id="14quatre14nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="15quatre15"></li>
+                <input id="15quatre15nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="16quatre16"></li>
+                <input id="16quatre16nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="17quatre17"></li>
+                <input id="17quatre17nbPlace" type="hidden" >
             </ul>
             <ul class="time-slot">
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="8cinq8"></li>
+                <input id="8cinq8nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="9cinq9"></li>
+                <input id="9cinq9nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="10cinq10"></li>
+                <input id="10cinq10nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="11cinq11"></li>
+                <input id="11cinq11nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="12cinq12"></li>
+                <input id="12cinq127nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="13cinq13"></li>
+                <input id="13cinq13nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="14cinq14"></li>
+                <input id="14cinq14nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="15cinq15"></li>
+                <input id="15cinq15nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="16cinq16"></li>
+                <input id="16cinq16nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="17cinq17"></li>
+                <input id="17cinq17nbPlace" type="hidden" >
             </ul>
             <ul class="time-slot">
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="8six8"></li>
+                <input id="8six8nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="9six9"></li>
+                <input id="9six9nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="10six10"></li>
+                <input id="10six10nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="11six11"></li>
+                <input id="11six11nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="12six12"></li>
+                <input id="12six12nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="13six13"></li>
+                <input id="13six13nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="14six14"></li>
+                <input id="14six14nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="15six15"></li>
+                <input id="15six15nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="16six16"></li>
+                <input id="16six16nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="17six17"></li>
+                <input id="17six17nbPlace" type="hidden" >
             </ul>
             <ul class="time-slot">
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="8sept8"></li>
+                <input id="8sept8nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="9sept9"></li>
+                <input id="9sept9nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="10sept10"></li>
+                <input id="10sept10nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="11sept11"></li>
+                <input id="11sept11nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="12sept12"></li>
+                <input id="12sept12nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="13sept13"></li>
+                <input id="13sept13nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="14sept14"></li>
+                <input id="14sept14nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="15sept15"></li>
+                <input id="15sept15nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="16sept16"></li>
+                <input id="16sept16nbPlace" type="hidden" >
                 <li class="time-slot-item" onclick="getIdClick(this.id)" id="17sept17"></li>
+                <input id="17sept17nbPlace" type="hidden" >
             </ul>
 
 
@@ -247,73 +317,201 @@ IF CONDITION POUR LE PREMIERJOUR : si heureactuelle > heure affichés, griser la
                         ${r.'nom'}
             </g:each>
 
-
-
             <script>
 
                 for (let heure = 8; heure < 18; heure++) {
                     let heurePlusTrente = heure+1;
-                    let text = heure + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
-                    let variable = heure+"prem"+heure
-                    document.getElementById(variable).innerHTML = text;
-                    document.getElementById(variable).setAttribute('value', heure + ' ' + heurePlusTrente);
-
+                    var date = new Date();
+                    if(date.getHours()+1 > heure ) {
+                        console.log('Heure dépassée !!')
+                        let text = heure + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
+                        let variable = heure+"prem"+heure
+                        document.getElementById(variable).innerHTML = text;
+                        document.getElementById(variable).setAttribute('value', heure + ' ' + heurePlusTrente);
+                        var btnCopy = document.getElementById(variable);
+                        btnCopy.className += " disabled";
+                        btnCopy.onclick = null;
+                        document.getElementById(variable).style.cssText = 'background-color:#C9C9C9;';
+                    }else {
+                        if(listHoraires[heure-8] === 0) {
+                            let text = heure + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
+                            let variable = heure+"prem"+heure
+                            let nbPlace = heure-1
+                            let setNbPlace = nbPlace+"prem"+nbPlace+"nbPlace"
+                            document.getElementById(setNbPlace).setAttribute('value', listHoraires[heure-8]);
+                            document.getElementById(variable).innerHTML = text;
+                            document.getElementById(variable).setAttribute('value', heure + ' ' + heurePlusTrente);
+                            var btnCopy = document.getElementById(variable);
+                            btnCopy.className += " disabled";
+                            btnCopy.onclick = null;
+                            document.getElementById(variable).style.cssText = 'background-color:#C9C9C9;';
+                        }else {
+                            let setNbPlace = heure+"prem"+heure+"nbPlace"
+                            document.getElementById(setNbPlace).setAttribute('value', listHoraires[heure-8]);
+                            let text = heure + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
+                            let variable = heure+"prem"+heure
+                            document.getElementById(variable).innerHTML = text;
+                            document.getElementById(variable).setAttribute('value', heure + ' ' + heurePlusTrente);
+                        }
+                    }
                 }
 
                 for (let heure = 18; heure < 28; heure++) {
-                    console.log(heure)
-                    let heurePlusTrente = heure + 1 - 10 ;
-                    let text = heure - 10 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
-                    let heuremoinsDix = heure-10
-                    let variable1 = heuremoinsDix + "deux" + heuremoinsDix
-                    document.getElementById(variable1).innerHTML = text;
-                    document.getElementById(variable1).setAttribute('value', heure-10 + ' ' + heurePlusTrente);
+                    if(listHoraires[heure-8] === 0) {
+                        let heurePlusTrente = heure + 1 - 10 ;
+                        let text = heure - 10 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
+                        let heuremoinsDix = heure-10
+                        let variable1 = heuremoinsDix + "deux" + heuremoinsDix
+                        document.getElementById(variable1).innerHTML = text;
+                        document.getElementById(variable1).setAttribute('value', heure-10 + ' ' + heurePlusTrente);
+                        var btnCopy = document.getElementById(variable1);
+                        btnCopy.className += " disabled";
+                        btnCopy.onclick = null;
+                        document.getElementById(variable1).style.cssText = 'background-color:#C9C9C9;';
+                    }else {
+                        let nbPlace = heure-10
+                        let setNbPlace = nbPlace+"deux"+nbPlace+"nbPlace"
+                        document.getElementById(setNbPlace).setAttribute('value', listHoraires[heure-8]);
+                        let heurePlusTrente = heure + 1 - 10 ;
+                        let text = heure - 10 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
+                        let heuremoinsDix = heure-10
+                        let variable1 = heuremoinsDix + "deux" + heuremoinsDix
+                        document.getElementById(variable1).innerHTML = text;
+                        document.getElementById(variable1).setAttribute('value', heure-10 + ' ' + heurePlusTrente);
+                    }
                 }
 
                 for (let heure = 28; heure < 38; heure++) {
-                    let heurePlusTrente = heure + 1 - 20 ;
-                    let text = heure - 20 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
-                    let heuremoinsDix = heure-20
-                    let variable1 = heuremoinsDix + "trois" + heuremoinsDix
-                    document.getElementById(variable1).innerHTML = text;
-                    document.getElementById(variable1).setAttribute('value', heure-20 + ' ' + heurePlusTrente);
+                    if(listHoraires[heure-8] === 0) {
+                        let heurePlusTrente = heure + 1 - 20 ;
+                        let text = heure - 20 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
+                        let heuremoinsDix = heure-20
+                        let variable1 = heuremoinsDix + "trois" + heuremoinsDix
+                        document.getElementById(variable1).innerHTML = text;
+                        document.getElementById(variable1).setAttribute('value', heure-20 + ' ' + heurePlusTrente);
+                        var btnCopy = document.getElementById(variable1);
+                        btnCopy.className += " disabled";
+                        btnCopy.onclick = null;
+                        document.getElementById(variable1).style.cssText = 'background-color:#C9C9C9;';
+                    }else {
+                        let nbPlace = heure-20
+                        let setNbPlace = nbPlace+"trois"+nbPlace+"nbPlace"
+                        document.getElementById(setNbPlace).setAttribute('value', listHoraires[heure-8]);
+                        let heurePlusTrente = heure + 1 - 20 ;
+                        let text = heure - 20 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
+                        let heuremoinsDix = heure-20
+                        let variable1 = heuremoinsDix + "trois" + heuremoinsDix
+                        document.getElementById(variable1).innerHTML = text;
+                        document.getElementById(variable1).setAttribute('value', heure-20 + ' ' + heurePlusTrente);
+                    }
                 }
 
                 for (let heure = 38; heure < 48; heure++) {
-                    let heurePlusTrente = heure + 1 - 30 ;
-                    let text = heure - 30 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
-                    let heuremoinsDix = heure-30
-                    let variable1 = heuremoinsDix + "quatre" + heuremoinsDix
-                    document.getElementById(variable1).innerHTML = text;
-                    document.getElementById(variable1).setAttribute('value', heure-30 + ' ' + heurePlusTrente);
+                    if(listHoraires[heure-8] === 0) {
+                        let heurePlusTrente = heure + 1 - 30 ;
+                        let text = heure - 30 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
+                        let heuremoinsDix = heure-30
+                        let variable1 = heuremoinsDix + "quatre" + heuremoinsDix
+                        document.getElementById(variable1).innerHTML = text;
+                        document.getElementById(variable1).setAttribute('value', heure-30 + ' ' + heurePlusTrente);
+                        var btnCopy = document.getElementById(variable1);
+                        btnCopy.className += " disabled";
+                        btnCopy.onclick = null;
+                        document.getElementById(variable1).style.cssText = 'background-color:#C9C9C9;';
+                    }else {
+                        let nbPlace = heure-30
+                        let setNbPlace = nbPlace+"quatre"+nbPlace+"nbPlace"
+                        document.getElementById(setNbPlace).setAttribute('value', listHoraires[heure-8]);
+                        let heurePlusTrente = heure + 1 - 30 ;
+                        let text = heure - 30 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
+                        let heuremoinsDix = heure-30
+                        let variable1 = heuremoinsDix + "quatre" + heuremoinsDix
+                        document.getElementById(variable1).innerHTML = text;
+                        document.getElementById(variable1).setAttribute('value', heure-30 + ' ' + heurePlusTrente);
+                    }
                 }
 
 
                 for (let heure = 48; heure < 58; heure++) {
-                    let heurePlusTrente = heure + 1 - 40 ;
-                    let text = heure - 40 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
-                    let heuremoinsDix = heure-40
-                    let variable1 = heuremoinsDix + "cinq" + heuremoinsDix
-                    document.getElementById(variable1).innerHTML = text;
-                    document.getElementById(variable1).setAttribute('value', heure-40 + ' ' + heurePlusTrente);
+
+                    if(listHoraires[heure-8] === 0) {
+                        let heurePlusTrente = heure + 1 - 40 ;
+                        let text = heure - 40 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
+                        let heuremoinsDix = heure-40
+                        let variable1 = heuremoinsDix + "cinq" + heuremoinsDix
+                        document.getElementById(variable1).innerHTML = text;
+                        document.getElementById(variable1).setAttribute('value', heure-40 + ' ' + heurePlusTrente);
+                        var btnCopy = document.getElementById(variable1);
+                        btnCopy.className += " disabled";
+                        btnCopy.onclick = null;
+                        document.getElementById(variable1).style.cssText = 'background-color:#C9C9C9;';
+                    }else {
+                        let nbPlace = heure-40
+                        let setNbPlace = nbPlace+"six"+nbPlace+"nbPlace"
+                        document.getElementById(setNbPlace).setAttribute('value', listHoraires[heure-8]);
+                        let heurePlusTrente = heure + 1 - 40 ;
+                        let text = heure - 40 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
+                        let heuremoinsDix = heure-40
+                        let variable1 = heuremoinsDix + "cinq" + heuremoinsDix
+                        document.getElementById(variable1).innerHTML = text;
+                        document.getElementById(variable1).setAttribute('value', heure-40 + ' ' + heurePlusTrente);
+                    }
+
+
                 }
 
                 for (let heure = 58; heure < 68; heure++) {
-                    let heurePlusTrente = heure + 1 - 50 ;
-                    let text = heure - 50 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
-                    let heuremoinsDix = heure-50
-                    let variable1 = heuremoinsDix + "six" + heuremoinsDix
-                    document.getElementById(variable1).innerHTML = text;
-                    document.getElementById(variable1).setAttribute('value', heure-50 + ' ' + heurePlusTrente);
+
+                    if(listHoraires[heure-8] === 0) {
+                        let heurePlusTrente = heure + 1 - 50 ;
+                        let text = heure - 50 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
+                        let heuremoinsDix = heure-50
+                        let variable1 = heuremoinsDix + "six" + heuremoinsDix
+                        document.getElementById(variable1).innerHTML = text;
+                        document.getElementById(variable1).setAttribute('value', heure-50 + ' ' + heurePlusTrente);
+                        var btnCopy = document.getElementById(variable1);
+                        btnCopy.className += " disabled";
+                        btnCopy.onclick = null;
+                        document.getElementById(variable1).style.cssText = 'background-color:#C9C9C9;';
+                    }else {
+                        let nbPlace = heure-50
+                        let setNbPlace = nbPlace+"six"+nbPlace+"nbPlace"
+                        document.getElementById(setNbPlace).setAttribute('value', listHoraires[heure-8]);
+                        let heurePlusTrente = heure + 1 - 50 ;
+                        let text = heure - 50 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
+                        let heuremoinsDix = heure-50
+                        let variable1 = heuremoinsDix + "six" + heuremoinsDix
+                        document.getElementById(variable1).innerHTML = text;
+                        document.getElementById(variable1).setAttribute('value', heure-50 + ' ' + heurePlusTrente);
+                    }
+
                 }
 
                 for (let heure = 68; heure < 78; heure++) {
-                    let heurePlusTrente = heure + 1 - 60;
-                    let text = heure - 60 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
-                    let heuremoinsDix = heure-60
-                    let variable1 = heuremoinsDix + "sept" + heuremoinsDix
-                    document.getElementById(variable1).innerHTML = text;
-                    document.getElementById(variable1).setAttribute('value', heure-60 + ' ' + heurePlusTrente);
+
+                    if(listHoraires[heure-8] === 0) {
+                        let heurePlusTrente = heure + 1 - 60;
+                        let text = heure - 60 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
+                        let heuremoinsDix = heure-60
+                        let variable1 = heuremoinsDix + "sept" + heuremoinsDix
+                        document.getElementById(variable1).innerHTML = text;
+                        document.getElementById(variable1).setAttribute('value', heure-60 + ' ' + heurePlusTrente);
+                        var btnCopy = document.getElementById(variable1);
+                        btnCopy.className += " disabled";
+                        btnCopy.onclick = null;
+                        document.getElementById(variable1).style.cssText = 'background-color:#C9C9C9;';
+                    }else {
+                        let nbPlace = heure-60
+                        let setNbPlace = nbPlace+"sept"+nbPlace+"nbPlace"
+                        document.getElementById(setNbPlace).setAttribute('value', listHoraires[heure-8]);
+                        let heurePlusTrente = heure + 1 - 60;
+                        let text = heure - 60 + ':00' + ' - ' + heurePlusTrente + ':00' + ' (' + listHoraires[heure-8] + ' places) '
+                        let heuremoinsDix = heure-60
+                        let variable1 = heuremoinsDix + "sept" + heuremoinsDix
+                        document.getElementById(variable1).innerHTML = text;
+                        document.getElementById(variable1).setAttribute('value', heure-60 + ' ' + heurePlusTrente);
+                    }
+
                 }
             </script>
         </div>
@@ -708,6 +906,8 @@ footer {
 
             }else {
                 console.log('petit deplicata condition compteur > 2');
+                document.getElementById("cestledeuxiemebutton").style.cssText = 'display: none';
+                document.getElementById("jefaisdisparaitrelebouton").style.cssText = 'display: block';
                 listId.pop();
                 listId.pop();
                 console.log('Liste : ' + listId);
@@ -796,7 +996,17 @@ footer {
             document.getElementById("heureDebutForm").setAttribute('value', document.getElementById(listId[0]).value + ':00:00');
             document.getElementById("heureFinForm").setAttribute('value', x + ':00:00');
 
+            var essaiDeLaValeur =  listId[0] + "nbPlace"
+
+        if(document.getElementById(essaiDeLaValeur).value < 6) {
+            document.getElementById("limiteDuCompteur").setAttribute('max', document.getElementById(essaiDeLaValeur).value);
+            console.log("places < 6")
+        }else {
+            document.getElementById("limiteDuCompteur").setAttribute('max', 6);
+            console.log('place = 6')
+        }
     }
+
 
     function secondForm() {
         if (listId.length > 1) {
@@ -882,9 +1092,19 @@ footer {
                     document.getElementById("dateReservation2").setAttribute('value', laDate);
                 document.getElementById("dateReservation3").setAttribute('value', laDate);
                 }
+
+            var essaiDeLaValeur =  listId[0] + "nbPlace"
+            var essaiDeLaValeur1 =  listId[1] + "nbPlace"
+            if(document.getElementById(essaiDeLaValeur).value < 6) {
+                document.getElementById("limiteDuCompteur").setAttribute('max', document.getElementById(essaiDeLaValeur).value);
+            }
+            if(document.getElementById(essaiDeLaValeur1).value < 6) {
+                document.getElementById("limiteDuCompteur").setAttribute('max', document.getElementById(essaiDeLaValeur1).value);
+            }
             }else {
             testFonction()
             document.forms["jetestUnForm"].submit();
+
         }
     }
 </script>
@@ -919,14 +1139,14 @@ footer {
                     <label for="nbPlace">
                         <g:message code="nbPlace.label" default="nombre de place" />
                     </label>
-                    <g:textField name="nbPlace" value="${ReservationInstance?.nbPlace}"/>
+                    <input type="number" id="limiteDuCompteur" name="nbPlace" max="6" value="${ReservationInstance?.nbPlace}"/>
                 </div>
 
                 <div class="fieldcontation ${hasErrors(bean: ReservationInstance, field: 'idPersonne', 'error')}">
                     <g:hiddenField name="idPersonne" value="0"/>
                 </div>
             </fieldset>
-            <g:actionSubmit id="jefaisdisparaitrelebouton" name="jetestUnForm" action="create" value="form1" />
+            <g:actionSubmit id="jefaisdisparaitrelebouton"  name="jetestUnForm" action="create" value="Je valide ma réservation" />
         </g:form>
     </div>
 
@@ -998,10 +1218,9 @@ footer {
                     <g:hiddenField name="idPersonne" value="0"/>
                 </div>
             </fieldset>
-            <g:actionSubmit name="jetestDeuxForm" action="create2" value="form2" onclick="secondForm()"/>
+            <g:actionSubmit name="jetestDeuxForm" action="create2" value="Je valide ma réservation" onclick="secondForm()"/>
         </g:form>
     </div>
-
 
 </html>
 
