@@ -20,6 +20,18 @@ class ReservationController {
         [reservationList: reservationList]
     }
 
+    def qrcode() {
+
+        if(params.reservation2 != null) {
+            println "il y a 2 creneaux"
+            [reservationInstance: Reservation.get(params.reservation2), ilya2creneau: true, premierCreneau: Reservation.get(params.reservation)]
+        }else {
+            println "il y a 1 seul creneau"
+            [reservationInstance: Reservation.get(params.id)]
+        }
+
+    }
+
     @Transactional
     def create() {
         def reservation = new Reservation(params).save()
@@ -38,7 +50,8 @@ class ReservationController {
              */
             flash.reservationInstance = reservation
             session.reservation = reservation
-            redirect uri: ''
+            params.reservation = reservation
+            redirect(action: "qrcode", params: [id: reservation.id])
         }
     }
 
@@ -60,7 +73,9 @@ class ReservationController {
              */
             flash.reservationInstance = reservation2
             session.reservation = reservation2
-            redirect uri: ''
+            params.reservation = reservation
+            params.reservation2 = reservation2
+            redirect(action: "qrcode", params: [id: reservation2.id, reservation2: reservation2.id, reservation: reservation.id])
         }
     }
 

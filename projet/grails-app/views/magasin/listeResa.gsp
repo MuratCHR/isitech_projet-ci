@@ -1012,24 +1012,17 @@ footer {
         if (listId.length > 1) {
             testFonction()
             alert("ON EST DANS LA FONCTION")
-            alert(listId[1])
-            alert('ID magasin  : ' + document.getElementById("idMagasin").value)
             var x = document.getElementById(listId[1]).value+1;
             var y = document.getElementById(listId[0]).value+1;
             console.log('ID jour : ' + getOnlyId(listId)[1])
             var idDuJour = getOnlyId(listId)[1]
-            console.log('ON A CLIQUE SUR 2 CRENEAUX')
             document.getElementById("heureDebutForm3").setAttribute('value', document.getElementById(listId[0]).value + ':00:00');
             document.getElementById("heureDebutForm2").setAttribute('value', document.getElementById(listId[1]).value + ':00:00');
-            alert('nb Place : ' + document.getElementById("nbPlace").value)
-            document.getElementById("nbPlace2").setAttribute('value', document.getElementById("nbPlace").value);
-            document.getElementById("nbPlace3").setAttribute('value', document.getElementById("nbPlace").value);
+            document.getElementById("nbPlace2").setAttribute('value', document.getElementById("limiteDuCompteur").value);
+            document.getElementById("nbPlace3").setAttribute('value', document.getElementById("limiteDuCompteur").value);
             document.getElementById("heureFinForm2").setAttribute('value', x + ':00:00');
             document.getElementById("heureFinForm3").setAttribute('value', y + ':00:00');
-            alert('heure debut : ' +  document.getElementById(listId[0]).value + ':00:00')
-            alert('heure debutetfin: ' +  y + ':00:00')
-            alert('heure debut2 : ' +  document.getElementById(listId[1]).value + ':00:00')
-            alert('heure debutetfin2: ' +  x + ':00:00')
+
 
             if (idDuJour == "prem") {
                 var date = new Date();
