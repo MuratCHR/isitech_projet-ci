@@ -58,6 +58,8 @@ class MagasinController {
     }
 
 
+
+
     @Transactional
     def create() {
         def magasin = new Magasin(params).save()

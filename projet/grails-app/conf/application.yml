@@ -36,6 +36,12 @@ management:
 
 ---
 grails:
+    controllers:
+        upload:
+            maxFileSize: 9999999
+            maxRequestSize: 9999999
+---
+grails:
     mime:
         disable:
             accept:
@@ -133,6 +139,7 @@ spring:
 management:
     endpoints:
         enabled-by-default: false
+
 
 ---
 grails:

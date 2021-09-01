@@ -69,9 +69,13 @@ MENU NAVBAR
         <div class="col-sm">
             <div class="text-center" style="padding-top: 100px; padding-left: 20px;">
                 <div class="card" style="width: 24rem;">
-                    <img class="card-img-top" width="300" height="300" src="https://www.ipzen.com/app/uploads/2017/10/logo-carrefour.png" alt="Logo du magasin">
+                    <img class="card-img-top" id="testImage" width="300" height="300" alt="Logo du magasin">
                     <div class="card-body">
                         <h5 class="card-title">${magasinInstance?.nom}</h5>
+                        <script>
+                            var base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(${fieldValue(bean: magasinInstance, field: "imageMagasin") })));
+                            document.getElementById("testImage").setAttribute('src', "data:image/png;base64,"+base64String);
+                        </script>
                         <p class="card-text">Jauge totale du magasin : ${magasinInstance?.placeTotale} places</p>
                         <p class="card-text">${fieldValue(bean: magasinInstance, field: "adresse") }, ${fieldValue(bean: magasinInstance.ville, field: "codePostal")}, ${fieldValue(bean: magasinInstance.ville, field: "nomVille")}</p>
                         <p class="card-text">De ${fieldValue(bean: magasinInstance, field: "horaireOuverture") } à ${fieldValue(bean: magasinInstance, field: "horaireFermeture")}.

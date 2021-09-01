@@ -18,6 +18,7 @@ class Magasin {
     String ouvertLeMidi
     Ville ville
     Categorie categorie
+    byte[] imageMagasin
     def scaffold = true
 
     static mapping = {
@@ -32,8 +33,7 @@ class Magasin {
         horaireOuverture column: 'horaireOuverture'
         horaireFermeture column: 'horaireFermeture'
         ouvertLeMidi column: 'ouvertLeMidi'
-
-
+        imageMagasin column:'imageMagasin'
     }
 
     static constraints = {
@@ -43,17 +43,16 @@ class Magasin {
         idVille(nullable: false)
         idCategorie(nullable:false)
         placeTotale(nullable: false)
-        horaireOuverture(nullable: true)
-        horaireFermeture(nullable: true)
-        ouvertLeMidi(nullable: true)
+        horaireOuverture(nullable: false)
+        horaireFermeture(nullable: false)
+        ouvertLeMidi(nullable: false)
         ville(nullable:true)
         categorie(nullable:true)
+        imageMagasin(nullable: false)
     }
 
     String toString() {
         return "$nom"
     }
-
-
 
 }

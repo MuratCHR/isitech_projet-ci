@@ -71,7 +71,7 @@ MENU NAVBAR
     <div class="text-center" style="padding-top: 50px;">
         <g:each in="${magasinList}" status="j" var="magasinInstance">
             <span style="padding: 20px;">
-                <a href="magasin/show/1">
+                <a href="magasin/show/4">
                     <img src="https://www.ipzen.com/app/uploads/2017/10/logo-carrefour.png" width="80" height="80" class="rounded-circle border border-primary"/>
                 </a>
             </span>
@@ -81,7 +81,7 @@ MENU NAVBAR
         <div class="text-center" style="padding-top: 50px;">
             <g:each in="${magasinList}" status="j" var="magasinInstance">
                 <span style="padding: 20px;">
-                    <a href="magasin/show/1">
+                    <a href="magasin/show/5">
                         <img src="https://www.ipzen.com/app/uploads/2017/10/logo-carrefour.png" width="80" height="80" class="rounded-circle border border-primary"/>
                     </a>
                 </span>

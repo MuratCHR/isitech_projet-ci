@@ -120,7 +120,7 @@ MENU NAVBAR
 </div>
 
 
-<g:form controller="magasin" action="create">
+<g:form enctype="multipart/form-data" controller="magasin" action="create">
     <fieldset class="form">
         <div class="fieldcontation ${hasErrors(bean: magasinInstance, field: 'nom', 'error')}">
             <label for="nom">
@@ -175,10 +175,18 @@ MENU NAVBAR
             </label>
             <g:select name="idCategorie" from="${projet.Categorie.list()}" optionKey="id" value="${magasinInstance? magasinInstance.categorie_id : ''}" noSelection="['':'Choisir une categorie']" class="mySelect" />
         </div>
+
+        <div class="fieldcontation ${hasErrors(bean: magasinInstance, field: 'imageMagasin', 'error')}">
+            <label for="imageMagasin">
+                <g:message code="imageMagasin.label"  default="imageMagasin" />
+            </label>
+            <input type="file" name="imageMagasin" value="${magasinInstance? magasinInstance.imageMagasin : ''}" name="fic" size=50 />
+        </div>
+
+
     </fieldset>
     <fieldset class="buttons">
-<fieldset class="buttons">
-    <g:submitButton name="Ajouter" class="create" />
+        <g:submitButton name="Ajouter" class="create" />
     </fieldset>
 </g:form>
 
