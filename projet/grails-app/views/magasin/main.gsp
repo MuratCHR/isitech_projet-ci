@@ -6,11 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>Accueil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <asset:link rel="icon" href="logo_d2m-removebg.png"/>
+    <asset:link rel="icon" href="assets/images/logo_d2m-removebg.png"/>
 
     %{--    <asset:stylesheet src="application.css"/>--}%
 
-
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
 
     <!-- Stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
@@ -25,9 +28,9 @@
 MENU NAVBAR
 --%>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand"><b>D2M</b></a>
+        <a class="navbar-brand" href="#"><img src="https://i.imgur.com/CjZFczH.png" width="50" height="50" /></a>
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,9 +38,6 @@ MENU NAVBAR
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="reservation/index">Réservation</a>
                 </li>
                 %{--                <li class="nav-item">--}%
                 %{--                    <a class="nav-link" href="#">Link</a>--}%
@@ -47,7 +47,7 @@ MENU NAVBAR
                 %{--                </li>--}%
             </ul>
             <form class="d-flex">
-                <button class="btn btn-danger" type="submit">Espace Pro</button>
+                <a class="btn btn-outline-danger" href="/user/espacePro" type="submit"><b>Vous êtes commerçant ?</b></a>
             </form>
         </div>
     </div>
@@ -68,13 +68,17 @@ MENU NAVBAR
     <h3 id="lesMagasinsLesPlusVus" style="padding-top: 60px; text-align: center">LES MAGASINS LES PLUS VISITÉS</h3>
     <h5 id="magasinAlimentaire" style="padding-top: 20px; text-align: left">Catégorie alimentaire</h5>
 
-    <div class="text-center" style="padding-top: 50px;">
+    <div class="text-center card-deck " style="padding-top: 50px;">
         <g:each in="${magasinList}" status="j" var="magasinInstance">
-            <span style="padding: 20px;">
-                <a href="magasin/show/4">
-                    <img src="https://www.ipzen.com/app/uploads/2017/10/logo-carrefour.png" width="80" height="80" class="rounded-circle border border-primary"/>
-                </a>
-            </span>
+            <div class="card" style="min-width: 15rem; max-width: 15rem;">
+                <img src="https://www.ipzen.com/app/uploads/2017/10/logo-carrefour.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">${magasinInstance?.nom}</h5>
+                    <p class="card-text">${magasinInstance?.ville}</p>
+                    <a href="magasin/show/4" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+
         </g:each>
     </div>
         <h5 id="magasinNonAlimentaire" style="padding-top: 40px; text-align: left">Catégorie non-alimentaire</h5>

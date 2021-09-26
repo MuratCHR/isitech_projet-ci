@@ -42,9 +42,6 @@ MENU NAVBAR
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="../../#">Accueil</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../../reservation/index">Réservation</a>
-                </li>
                 %{--                <li class="nav-item">--}%
                 %{--                    <a class="nav-link" href="#">Link</a>--}%
                 %{--                </li>--}%
@@ -77,10 +74,9 @@ MENU NAVBAR
                     <div class="col">
                         <div class="text-center" style="padding-top: 100px; padding-left: 20px;">
                             <div class="card" style="width: 24rem;">
-                                <img class="card-img-top" width="300" height="300" src="https://www.ipzen.com/app/uploads/2017/10/logo-carrefour.png" alt="Logo du magasin">
                                 <div class="card-body">
                                     <h5 class="card-title">${r.'nom'}</h5>
-                                    <p class="card-text">${r.'adresse'}, ${r.'codePostal'}, ${r.'nomVille'}</p>
+                                    <p class="card-text">${r.'adresse'}, ${r.'codePostal'} ${r.'nomVille'}</p>
                                     <g:link  class="btn btn-primary" action="show" id="${r.ID}">
                                         ${message(code: 'default.button.je.visite.le.magasin.label', default: 'Visiter le magasin')}
                                     </g:link>
